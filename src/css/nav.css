@@ -1,0 +1,22 @@
+.fa-user{
+    color: #127990;
+    font-size: 25px;
+    
+}
+.fa-feather{
+    color: #127990;/*#005b6f*/
+    font-size: 35px;
+
+    
+}
+.navbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .navbar-brand{
+    margin-bottom: 20px;
+ }
+ .login{
+    margin-top: 7px;
+}

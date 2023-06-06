@@ -1,0 +1,44 @@
+.numero{
+    width:60px;
+    height:60px;
+    background-color: rgb(148, 148, 144);
+  }
+
+  .igual{
+    width:122px;
+    height:60px;
+    background-color: rgb(148, 148, 144);
+  }
+
+  table{
+    margin:auto;
+    width:15%;
+    border: 3px solid  rgb(148, 148, 144) ;
+    border-collapse: collapse;
+    
+  }
+  td{
+    background-color:#000;
+    border: #000;
+    text-align: center;
+  }
+  
+  /*body{
+    background-image: url(../imgs/fondoCalculadora.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }*/
+  html,body{
+    min-height: 100%;
+}
+
+  .color_display{
+    height:30px;
+    background-color:#000;
+    border:medium #FFF;
+    font: "Space Age";
+    color:#0F0;
+    font-size:18px;
+    text-align:right;
+    padding:5px;
+  }
