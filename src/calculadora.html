@@ -17,45 +17,33 @@
     </head>
 
     <body>
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
+    <!-----------------------------------------------Barra navegacion------------------------------------------------------>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
             <span class="navbar-brand">
                 <i class="fa-solid fa-feather"></i>
                 <label >Free Office</label>
             </span>
-          </div>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="login">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="fa-solid fa-user"></i>&nbsp; LOGIN/SING UP
-               <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <form action="" method="POST">
-                    <div>
-                      <label for="username">UserName</label>
-                      <input type="text" id="username" name="username" placeholder="User" required>
-                    </div>
-                    <div>
-                      <label for="password">Password</label>
-                      <input type="password" name="password" id="password">
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="new_user">New User
-                      </label>
-                    </div>
-                    <input type="submit" name="submit" value="Send">
-                    <input type="reset" name="clear" value="Reset">
-                  </form>
-                </li>
-              </ul>
-            </li>
-          </ul>
         </div>
-      </nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="login">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>&nbsp; "Usuario actual"
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <div>
+                  <button>Sign Out</button>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-----------------------------------------------interfaz calculadora------------------------------------------------------>
       <table>
         <tr>
           <td colspan="4">
