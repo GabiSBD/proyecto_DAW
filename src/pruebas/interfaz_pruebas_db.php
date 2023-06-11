@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pruebas</title>
+    <?php
+        session_start();
+    ?>
 
 </head>
 <body>
@@ -18,8 +21,9 @@
     <?php
         
         if(isset($_SESSION["usuario"])){
-            echo "usuario: ".$_SESSION["usuario"]["name"]."id: ".$_SESSION["usuario"]["id"]."isAdmin: ".$_SESSION["usuario"]["isAdmin"];
+            echo "usuario: ".$_SESSION["usuario"]["name"]."  id: ".$_SESSION["usuario"]["id"]."  isAdmin: ".$_SESSION["usuario"]["isAdmin"];
         }else{echo "session usuario es null";}
+        
     ?>
 </body>
 </html>
