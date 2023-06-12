@@ -4,7 +4,7 @@ require("datos_conexion.php");
 class MyConnection{
     protected $db_connection;
 
-    public function get_connect(){
+    public function __construct(){
         try{
             $this->db_connection = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWRD);
 
@@ -13,6 +13,9 @@ class MyConnection{
         }catch(PDOException $e){
             die("Error: " . $e->getMessage() ." Codigo PDOException: " . $e->getCode() ." En la linea " . $e->getLine());
         }
+    }
+    public function get_connect(){
+       
         return $this->db_connection;
     }
 
