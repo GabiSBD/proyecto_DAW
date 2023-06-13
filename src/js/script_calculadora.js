@@ -22,7 +22,7 @@ $(document).ready(function(){
     $("#decimal").attr("onclick","displayNumbers('"+$("#decimal").val()+"')");
     $("#igual").attr("onclick","igual('"+$("#igual").val()+"')");
     document.getElementById("reset").addEventListener("click",reset, false);
-  })
+  });
   var cifra ="";
   var cont = 0;
   var ultValor = 0;

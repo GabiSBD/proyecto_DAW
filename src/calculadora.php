@@ -7,42 +7,65 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script src="js/script_calculadora.js"></script>
+      <script src="js/calculadora-nav.js"></script>
       <!--CSS-->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link rel="stylesheet" href="css/cssCalculadora.css" type="text/css">
       <link rel="stylesheet" type="text/css" href="css/nav.css">
-
+      <!--PHP-->
+      <?php
+        session_start();
+      ?>
       <title>Web Calculator</title>
     </head>
 
     <body>
     <!-----------------------------------------------Barra navegacion------------------------------------------------------>
     <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
+        <div class="container">
+          <div class="navbar-header" id="logo">
             <span class="navbar-brand">
                 <i class="fa-solid fa-feather"></i>
-                <label >Free Office</label>
+                <label class="nav-font">Free Office</label>
             </span>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="login">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa-solid fa-user"></i>&nbsp; "Usuario actual"
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <div>
-                  <button>Sign Out</button>
-                </div>
+          </div>
+          <?php
+          
+            if(isset($_SESSION["usuario"])){
+              echo "<ul class='nav navbar-nav navbar-right'>
+              <li class='login'>
+                <a href='#' class='dropdown-toggle nav-font' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
+                  <i class='fa-solid fa-user'></i>&nbsp;".$_SESSION["usuario"]["name"]."
+                <span class='caret'></span>
+                </a>
+                <ul class='dropdown-menu'>
+                  <li>
+                    <form action='php/logOut_controller.php' method='POST'>
+                      <div class='checkbox'>
+                          <label class='nav-font'>
+                          <input  type='submit' value='Log Out'>
+                          </label>
+                      </div>
+                    </form>
+                  </li>
+                </ul>
               </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
+            </ul>";
+           
+              
+            }else{
+              echo "<ul class='nav navbar-nav navbar-right'>
+              <li class='login'>
+                <a href='#' class=' nav-font'>
+                  <i class='fa-solid fa-user'></i>&nbsp; Guest User
+                </a>
+                ";
+            session_destroy();
+            }
+          ?>
+        </div>
+      </nav>
     <!-----------------------------------------------interfaz calculadora------------------------------------------------------>
       <table>
         <tr>

@@ -17,19 +17,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-
-    <title>Free office</title>
-
+    <!--php-->
     <?php
      session_start();
     ?>
-    
+    <script src="js/index.js"></script>
+    <title>Free office</title>
 </head>
 <body>
 <!-----------------------------------------------Barra navegacion------------------------------------------------------>
     <nav class="navbar navbar-default">
         <div class="container">
-          <div class="navbar-header">
+          <div class="navbar-header" id="logo">
             <span class="navbar-brand">
                 <i class="fa-solid fa-feather"></i>
                 <label class="nav-font">Free Office</label>
@@ -49,7 +48,7 @@
                     <form action='php/logOut_controller.php' method='POST'>
                       <div class='checkbox'>
                           <label class='nav-font'>
-                          <input  type='submit' value='Close Session'>
+                          <input  type='submit' value='Log Out'>
                           </label>
                       </div>
                     </form>
@@ -63,7 +62,7 @@
               echo "<ul class='nav navbar-nav navbar-right'>
               <li class='login'>
                 <a href='#' class='dropdown-toggle nav-font' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
-                  <i class='fa-solid fa-user'></i>&nbsp; LOGIN/SING UP
+                  <i class='fa-solid fa-user'></i>&nbsp; SIGN IN/SIGN UP
                 <span class='caret'></span>
                 </a>
                 <ul class='dropdown-menu'>
@@ -98,10 +97,10 @@
 
     <div class="container container-btn">
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador">FreeWriter</button>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador" id="freeWritter">FreeWriter</button>
         </div>
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-calculadora">Calculator</button>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-calculadora" id="calculator">Calculator</button>
         </div>
     </div>
 </body>
