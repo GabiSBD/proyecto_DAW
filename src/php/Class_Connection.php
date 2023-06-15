@@ -1,5 +1,5 @@
 <?php  
-require("datos_conexion.php");
+require("Connection_Const.php");
 
 class MyConnection{
     protected $db_connection;

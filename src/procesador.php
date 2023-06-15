@@ -18,7 +18,34 @@
     <link rel="stylesheet" type="text/css" href="css/editor.css">
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <!--JS-->
-    <script src="js/procesador.js"></script>
+    <script>
+      $(function(){
+        $("#userText").Editor();
+
+        document.getElementById("logo").addEventListener("click",function(){
+            window.location = "index.php";
+        },false);
+
+        //funcion para conexion ajax al guardar texto
+        $("#save").click(function(){
+
+           // $("#saveSucess").html("entró en el met ajax");
+
+           let formData = {
+                title:$("#title").val(),
+                text:$("#userText").Editor("getText")
+            };
+
+            $.post("php/saveText_controller.php", formData, responseSaveText);
+
+            
+
+       });
+        function responseSaveText(data){
+            data=="sucess"? $("#saveSucess").html("guardado con exito") : $("#saveSucess").html("error al guardar");
+        }
+    });
+    </script>
     <!--PHP-->
     <?php
       session_start();
@@ -73,20 +100,21 @@
       </nav>
 <!-----------------------------------------------contenedor del editor------------------------------------------------------>
     <div class="container">
-      
-                <form action="" method="post" id="text-form">
-                    <div class="form-group">
-                        <textarea name="userText" id="userText"></textarea>
-                    </div>
-                    <div>
-                        <?php
-                          if(isset($_SESSION["usuario"])){
-                            echo "<button>Guardar</button>";
-                          }
-                        ?>
-                    </div>
-                </form>
+                  
+      <div class="col-md-8">
+          <textarea name="userText" id="userText"></textarea>
+      </div>
+      <div class="col-md-4">
+          <div> 
+          
+              
+              <input type='text' name='title' id='title' placeholder='Title'>
+              <button id='save' <?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>Guardar</button>
             
+            
+          
+          </div>
+          <div id="saveSucess"></div>       
 
     </div>
     
