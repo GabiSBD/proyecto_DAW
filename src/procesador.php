@@ -19,7 +19,11 @@
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <!--JS-->
     <script>
-      $(function(){
+      /*
+        Me vi obligado a incrustar aqui el js de este fichero porque no habia 
+        otra manera de hacer que las funcionalidades ajax funcionases desde un fichero externo
+      */
+     $(function(){
         $("#userText").Editor();
 
         document.getElementById("logo").addEventListener("click",function(){
@@ -29,22 +33,20 @@
         //funcion para conexion ajax al guardar texto
         $("#save").click(function(){
 
-           // $("#saveSucess").html("entró en el met ajax");
-
-           let formData = {
+            let formData = {
                 title:$("#title").val(),
                 text:$("#userText").Editor("getText")
             };
 
             $.post("php/saveText_controller.php", formData, responseSaveText);
 
-            
-
-       });
-        function responseSaveText(data){
-            data=="sucess"? $("#saveSucess").html("guardado con exito") : $("#saveSucess").html("error al guardar");
-        }
-    });
+        });
+          
+      });
+    function responseSaveText(data){
+        data=="sucess"? $("#saveSucess").html("guardado con exito") : $("#saveSucess").html("error al guardar");
+    }
+    
     </script>
     <!--PHP-->
     <?php

@@ -1,6 +1,7 @@
 <?php
     include("Class_text.php");
     session_start();
+    
     $id_user = $_SESSION["usuario"]["id"];
     $title = $_POST["title"];
     $text = $_POST["text"];
