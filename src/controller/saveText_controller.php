@@ -1,5 +1,5 @@
 <?php
-    include("Class_text.php");
+    include("../model/Class_text.php");
     session_start();
     
     $id_user = $_SESSION["usuario"]["id"];

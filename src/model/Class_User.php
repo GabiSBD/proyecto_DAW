@@ -45,7 +45,7 @@
 
                 $myConnection->close_connect();
 
-                header("location:../index.php");
+                header("location:../view/index.php");
 
             }else{
                 //aqui añadir cookie para volver a index y añadir texto de usu no encontrado debajo del form de login

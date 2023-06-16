@@ -45,7 +45,7 @@
                 </a>
                 <ul class='dropdown-menu'>
                   <li>
-                    <form action='php/logOut_controller.php' method='POST'>
+                    <form action='../controller/logOut_controller.php' method='POST'>
                       <div class='checkbox'>
                           <label class='nav-font'>
                           <input  type='submit' value='Log Out'>
@@ -67,7 +67,7 @@
                 </a>
                 <ul class='dropdown-menu'>
                   <li>
-                    <form action='php/login_controller.php' method='POST'>
+                    <form action='../controller/login_controller.php' method='POST'>
                       <div>
                           <label for='username' class='nav-font'>UserName</label>
                           <input type='text' id='username' name='username' placeholder='User' required>

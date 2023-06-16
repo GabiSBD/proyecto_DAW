@@ -20,10 +20,6 @@ class MyConnection{
         return $this->db_connection;
     }
 
-
-    public function get_dbConnection(){
-        return $this->db_connection;
-    }
     public function close_connect(){
         $this->db_connection=null;
     }

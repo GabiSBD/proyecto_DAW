@@ -41,7 +41,7 @@
                 </a>
                 <ul class='dropdown-menu'>
                   <li>
-                    <form action='php/logOut_controller.php' method='POST'>
+                    <form action='../controller/logOut_controller.php' method='POST'>
                       <div class='checkbox'>
                           <label class='nav-font'>
                           <input  type='submit' value='Log Out'>
