@@ -12,6 +12,8 @@
         }
 
         public function isUser(){
+            //comprueba si existe un usuario en la bbdd
+
             $myConnection = new MyConnection();
             $conn = $myConnection->get_connect();
             
@@ -48,8 +50,9 @@
                 header("location:../view/index.php");
 
             }else{
-                //aqui añadir cookie para volver a index y añadir texto de usu no encontrado debajo del form de login
-                echo "no encontrado";
+               //devolvemos por url un mensaje de error que servira para mostrar un mensaje en el form de index.php
+                
+                header("location:../view/index.php?error=los+datos+no+corresponden+a+ningun+usuario");
                 
             }
         }
@@ -78,6 +81,83 @@
                 echo "ya existe ";
             }
         }
+        public function deleteUser(){
+            //borrara un usuario pero primero borrar los textos e imagenes  asociados a su id
+
+            $MyConnection = new MyConnection();
+            
+            $conn = $MyConnection->get_connect();
+
+           try{
+
+                //selecionamos el id del usuario en sesion
+                
+                $id_user = $_SESSION["usuario"]["id"];
+                
+                // iniciamos una transaccion y quitamos el seguro de actualizaciones de la bbdd temporalmente
+                $conn->beginTransaction();
+                $conn->exec("SET SQL_SAFE_UPDATES = 0;");
+
+           
+                //borramos los textos asociados al id del usuario
+                $deleteTexts = $conn->prepare("delete from texts where id_user= :id_user;");
+                $deleteTexts->execute(array(":id_user"=>$id_user));
+
+                //establecemos el borrado seguro de nuevo
+                $conn->exec("SET SQL_SAFE_UPDATES = 1;");
+
+                //borramos el usuario
+                $deleteUser = $conn->prepare("delete from users where id=:id;");
+                $deleteUser->execute(array(":id"=>$id_user));
+
+                //reiniciamos y configuramos de nuevo los indices de auto increment de ambas tablas
+               // $this->setAutoIncrement();
+
+                $_SESSION["usuario"]=null;
+                session_destroy();
+
+                // cerramos transacion o la deshacemos, ademas liberamos memoria
+            
+                 $conn->commit();
+                 $deleteTexts->closeCursor();
+                 $deleteUser->closeCursor();
+                 $MyConnection->close_connect();
+                 header("location:../view/index.php");
+            }catch(PDOException $e){
+            
+                $conn->rollBack();
+                 $deleteTexts->closeCursor();
+                 $deleteUser->closeCursor();
+                 $MyConnection->close_connect();
+                header("location:../view/index.php?error=Error,+contacte+con+servicio+tecnico");
+            
+            }
+
+
+
+
+
+        }
+       /*private function setAutoIncrement(){
+            $Connection = new MyConnection();
+            $conn = $Connection->get_connect();
+
+            $auto_idUser = $conn->query("select MAX(id) from users");
+            $auto_idTxt = $conn->query("select MAX(id) from texts");
+
+            while($rowTxt =$auto_idTxt->fetch()){
+                $conn->exec("alter table texts AUTO_INCREMENT=".$rowTxt[0].";");
+            }
+            while($rowUser = $auto_idUser->fetch()){
+                $conn->exec("alter table users AUTO_INCREMENT=".$rowUser[0].";");
+            }
+
+            $auto_idTxt->closeCursor();
+            $auto_idUser->closeCursor();
+            $Connection->close_connect();
+            return true;
+
+        }*/
 
 
     }

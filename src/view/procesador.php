@@ -38,7 +38,7 @@
                 text:$("#userText").Editor("getText")
             };
 
-            $.post("php/saveText_controller.php", formData, responseSaveText);
+            $.post("../controller/saveText_controller.php", formData, responseSaveText);
 
         });
           
@@ -78,8 +78,18 @@
                     <form action='../controller/logOut_controller.php' method='POST'>
                       <div class='checkbox'>
                           <label class='nav-font'>
-                          <input  type='submit' value='Log Out'>
+                          <input class='btn btn-info' type='submit' value='Log Out'>
                           </label>
+                      </div>
+                    </form>
+                  </li>
+                  <li>
+                    <form action='../controller/deleteUser_controller.php' method='POST'>
+                      <div class='checkbox'>
+                        <label class='nav-font'>
+                          <input class='btn btn-danger' type='submit' value='Delete User'>";
+                          if(isset($_GET["error"])) echo "<p class='text-danger nav-font'>".$_GET["error"]."</p>";
+                       echo " </label>
                       </div>
                     </form>
                   </li>
@@ -107,14 +117,11 @@
           <textarea name="userText" id="userText"></textarea>
       </div>
       <div class="col-md-4">
-          <div> 
-          
-              
-              <input type='text' name='title' id='title' placeholder='Title'>
-              <button id='save' <?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>Guardar</button>
+          <div>    
+              <input type='text' name='title' id='title' placeholder='Title'<?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>
+              <button id='save' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow' disabled"; 
+                                  else echo "class='btn btn-primary rounded-pill shadow'";?>>Guardar</button>
             
-            
-          
           </div>
           <div id="saveSucess"></div>       
 

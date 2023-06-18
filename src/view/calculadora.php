@@ -44,8 +44,18 @@
                     <form action='../controller/logOut_controller.php' method='POST'>
                       <div class='checkbox'>
                           <label class='nav-font'>
-                          <input  type='submit' value='Log Out'>
+                          <input class='btn btn-info' type='submit' value='Log Out'>
                           </label>
+                      </div>
+                    </form>
+                  </li>
+                  <li>
+                    <form action='../controller/deleteUser_controller.php' method='POST'>
+                      <div class='checkbox'>
+                        <label class='nav-font'>
+                          <input class='btn btn-danger' type='submit' value='Delete User'>";
+                          if(isset($_GET["error"])) echo "<p class='text-danger nav-font'>".$_GET["error"]."</p>";
+                       echo " </label>
                       </div>
                     </form>
                   </li>

@@ -2,5 +2,5 @@
     session_start();
     $_SESSION["usuario"]=null;
     session_destroy();
-    header("location:../view/index.php");
+    header("location:".$_SERVER['HTTP_REFERER']);
 ?>

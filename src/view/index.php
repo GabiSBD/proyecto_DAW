@@ -48,8 +48,18 @@
                     <form action='../controller/logOut_controller.php' method='POST'>
                       <div class='checkbox'>
                           <label class='nav-font'>
-                          <input  type='submit' value='Log Out'>
+                          <input class='btn btn-info' type='submit' value='Log Out'>
                           </label>
+                      </div>
+                    </form>
+                  </li>
+                  <li>
+                    <form action='../controller/deleteUser_controller.php' method='POST'>
+                      <div class='checkbox'>
+                        <label class='nav-font'>
+                          <input class='btn btn-danger' type='submit' value='Delete User'>";
+                          if(isset($_GET["error"])) echo "<p class='text-danger nav-font'>".$_GET["error"]."</p>";
+                       echo " </label>
                       </div>
                     </form>
                   </li>
@@ -75,14 +85,15 @@
                       <div>
                           <label for='password' class='nav-font'>Password</label>
                           <input type='password' name='password' id='password'>
-                      </div>
+                          <p class='text-danger nav-font'>";if(isset($_GET["error"]))echo $_GET["error"]."</p>";
+                     echo "</div>
                       <div class='checkbox'>
                           <label class='nav-font'>
                           <input  type='checkbox' name='new_user' value='new_user'>New User
                           </label>
                       </div>
-                      <input class='nav-font' type='submit' name='submit' value='Send'>
-                      <input class='nav-font' type='reset' name='clear' value='Reset'>
+                      <input class='nav-font btn btn-info' type='submit' name='submit' value='Send'>
+                      <input class='nav-font btn btn-danger' type='reset' name='clear' value='Reset'>
                     </form>
                   </li>
                 </ul>
