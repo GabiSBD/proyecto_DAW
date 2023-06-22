@@ -17,9 +17,9 @@
             $myConnection = new MyConnection();
             $conn = $myConnection->get_connect();
             
-            $resultSet = $conn->prepare("select name from users where name = :name and passwrd=AES_ENCRYPT(:pass,'key');");
+            $resultSet = $conn->prepare("select name from users where name = :name;");
 
-            $resultSet->execute(array(":name"=>$this->name,":pass"=>$this->passwrd));
+            $resultSet->execute(array(":name"=>$this->name));
         
             $isUser = $resultSet->rowCount()>0;
 
@@ -71,16 +71,17 @@
                 if($isOK->rowCount()>0){
                     $this->getUser();
                 }else{
-                    echo "error al insertar registro";
+                    header( "location: ../view/index.php?error=error+al+insertar+registro");
                 }
 
                 $resultSet->closeCursor();
                 $myConnection->close_connect();
 
             }else{
-                echo "ya existe ";
+                header("location:../view/index.php?error=el+usuario+ya+existe");
             }
         }
+
         public function deleteUser(){
             //borrara un usuario pero primero borrar los textos e imagenes  asociados a su id
 
@@ -95,7 +96,6 @@
                 $id_user = $_SESSION["usuario"]["id"];
                 
                 // iniciamos una transaccion y quitamos el seguro de actualizaciones de la bbdd temporalmente
-                $conn->beginTransaction();
                 $conn->exec("SET SQL_SAFE_UPDATES = 0;");
 
            
@@ -111,34 +111,28 @@
                 $deleteUser->execute(array(":id"=>$id_user));
 
                 //reiniciamos y configuramos de nuevo los indices de auto increment de ambas tablas
-               // $this->setAutoIncrement();
+                $this->setAutoIncrement();
 
                 $_SESSION["usuario"]=null;
                 session_destroy();
 
                 // cerramos transacion o la deshacemos, ademas liberamos memoria
-            
-                 $conn->commit();
-                 $deleteTexts->closeCursor();
-                 $deleteUser->closeCursor();
-                 $MyConnection->close_connect();
-                 header("location:../view/index.php");
+               
+                $deleteTexts->closeCursor();
+                $deleteUser->closeCursor();
+                $MyConnection->close_connect();
+                header("location:../view/index.php");
             }catch(PDOException $e){
-            
-                $conn->rollBack();
-                 $deleteTexts->closeCursor();
-                 $deleteUser->closeCursor();
-                 $MyConnection->close_connect();
+                
+                $deleteTexts->closeCursor();
+                $deleteUser->closeCursor();
+                $MyConnection->close_connect();
                 header("location:../view/index.php?error=Error,+contacte+con+servicio+tecnico");
             
             }
-
-
-
-
-
         }
-       /*private function setAutoIncrement(){
+        
+       private function setAutoIncrement(){
             $Connection = new MyConnection();
             $conn = $Connection->get_connect();
 
@@ -157,7 +151,7 @@
             $Connection->close_connect();
             return true;
 
-        }*/
+        }
 
 
     }

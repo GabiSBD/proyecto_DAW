@@ -32,6 +32,12 @@
 
         //funcion para conexion ajax al guardar texto
         $("#save").click(function(){
+            let title =$("#title").val();
+
+            if(title==null ||title==""||title==" "){
+              $("#saveSuccess").attr("class","text-danger").html("el titulo del archivo no puede quedar en blanco");
+              return false;
+            }
 
             let formData = {
                 title:$("#title").val(),
@@ -43,8 +49,9 @@
         });
           
       });
+      //coloca un mensaje de respuesta del servidor al guardar texto
     function responseSaveText(data){
-        data=="sucess"? $("#saveSucess").html("guardado con exito") : $("#saveSucess").html("error al guardar");
+        data=="success"? $("#saveSuccess").attr("class","text-success").html("guardado con exito") : $("#saveSuccess").attr("class","text-danger").html("error al guardar");
     }
     
     </script>
@@ -123,7 +130,16 @@
                                   else echo "class='btn btn-primary rounded-pill shadow'";?>>Guardar</button>
             
           </div>
-          <div id="saveSucess"></div>       
+          <div id="saveSuccess"></div>
+          <div>
+            <select id="textList" <?php if(!isset($_SESSION["usuario"]))echo "disabled";?>>
+              <option value="" selected> Historial</option>
+              <?php
+                require("../model/Class_text.php");
+                Text::getTitles($_SESSION["usuario"]["id"]);
+              ?>
+            </select>
+          <div>    
 
     </div>
     

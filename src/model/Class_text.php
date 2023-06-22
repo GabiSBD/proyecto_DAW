@@ -23,9 +23,58 @@
 
             
 
-            if($resultSet) echo "sucess";
+            if($resultSet) echo "success";
             else echo "fail";
 
+        }
+        public static function getTitles($id){
+          try{  
+                $myConnect = new MyConnection();
+
+                $conn = $myConnect->get_connect();
+
+                $resultSet = $conn->prepare("select title from texts where id_user = :id ;");
+                
+                $resultSet->execute(array(":id"=>$id));
+
+                while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
+                    echo "<option value='".$row["title"]."'>".$row["title"]."</option>";
+                }
+
+            }catch(PDOException $e){
+                echo "notfound";
+            }
+
+
+        }
+        public function getText(){
+            try{
+                $myConnect = new MyConnection();
+
+                $conn = $myConnect->get_connect();
+
+                $resultSet = $conn->prepare("select text from texts where id_user = :id and title=:title ;");
+
+                $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
+
+                if($resultSet->rowCount()>0){
+                    $row = $resultSet->fetch(PDO::FETCH_ASSOC);
+
+                    session_start();
+
+                    $text =$row["text"];
+                    
+                    echo $text;
+
+                }
+                else{
+                    echo "error";
+                }
+            }catch(PDOException $e){
+                echo "error";
+                
+
+            }
         }
 
     }
