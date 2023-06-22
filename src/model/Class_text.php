@@ -60,8 +60,6 @@
                 if($resultSet->rowCount()>0){
                     $row = $resultSet->fetch(PDO::FETCH_ASSOC);
 
-                    session_start();
-
                     $text =$row["text"];
                     
                     echo $text;

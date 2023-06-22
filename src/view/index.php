@@ -78,22 +78,24 @@
                 <ul class='dropdown-menu'>
                   <li>
                     <form action='../controller/login_controller.php' method='POST'>
-                      <div>
+                      <div style='text-align:center;'>
                           <label for='username' class='nav-font'>UserName</label>
                           <input type='text' id='username' name='username' placeholder='User' required>
                       </div>
-                      <div>
+                      <div style='text-align:center;'>
                           <label for='password' class='nav-font'>Password</label>
                           <input type='password' name='password' id='password'>
                           <p class='text-danger nav-font'>";if(isset($_GET["error"]))echo $_GET["error"]."</p>";
                      echo "</div>
-                      <div class='checkbox'>
-                          <label class='nav-font'>
-                          <input  type='checkbox' name='new_user' value='new_user'>New User
-                          </label>
+                      <div class='checkbox input-group'>
+                          <span class='nav-font input-group-addon'>
+                            <input  type='checkbox' name='new_user' value='new_user'>New User
+                          </span>
                       </div>
+                      <div style='text-align:center;'>
                       <input class='nav-font btn btn-info' type='submit' name='submit' value='Send'>
                       <input class='nav-font btn btn-danger' type='reset' name='clear' value='Reset'>
+                      </div>
                     </form>
                   </li>
                 </ul>

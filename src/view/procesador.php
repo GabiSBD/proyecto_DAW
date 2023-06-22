@@ -31,7 +31,7 @@
         },false);
 
         //funcion para conexion ajax al guardar texto
-        $("#save").click(function(){
+        document.getElementById("save").addEventListener("click",function(){
             let title =$("#title").val();
 
             if(title==null ||title==""||title==" "){
@@ -46,12 +46,31 @@
 
             $.post("../controller/saveText_controller.php", formData, responseSaveText);
 
-        });
+        },false);
+        //funcion ajax para traer texto de vuelta al editor
+        document.getElementById("textList").addEventListener("change",function(){
+
+          let txtTitle = $("#textList").val();
+          //colocamos el titulo del texto recuperado en el input de guardar para facilitar su post actualizacion
+          $("#title").val(txtTitle);
+
+          let formData = {
+            title:txtTitle
+          };
+
+          $.post("../controller/getText.php", formData, write);
+          
+        },false);
+
+        
           
       });
       //coloca un mensaje de respuesta del servidor al guardar texto
     function responseSaveText(data){
         data=="success"? $("#saveSuccess").attr("class","text-success").html("guardado con exito") : $("#saveSuccess").attr("class","text-danger").html("error al guardar");
+    }
+    function write(data){
+      $("#userText").Editor("setText",data);
     }
     
     </script>
@@ -124,19 +143,20 @@
           <textarea name="userText" id="userText"></textarea>
       </div>
       <div class="col-md-4">
-          <div>    
-              <input type='text' name='title' id='title' placeholder='Title'<?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>
-              <button id='save' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow' disabled"; 
-                                  else echo "class='btn btn-primary rounded-pill shadow'";?>>Guardar</button>
-            
+          <div class="input-group">    
+              <input type='text' class="form-control" name='title' id='title' placeholder='Title'<?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>
+              <span class="input-group-btn">
+                <button id='save' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow' disabled"; else echo "class='btn btn-primary rounded-pill shadow'";?>>
+                  <i class="fa-solid fa-floppy-disk"></i>
+                </button>
+              </span>
           </div>
           <div id="saveSuccess"></div>
           <div>
-            <select id="textList" <?php if(!isset($_SESSION["usuario"]))echo "disabled";?>>
-              <option value="" selected> Historial</option>
+            <select id="textList" class="form-control" <?php if(!isset($_SESSION["usuario"]))echo "disabled";?>>
+              <option value="" selected>History</option>
               <?php
-                require("../model/Class_text.php");
-                Text::getTitles($_SESSION["usuario"]["id"]);
+                include("../controller/history.php"); 
               ?>
             </select>
           <div>    
