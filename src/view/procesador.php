@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="css/editor.css">
     <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <!--PHP-->
+    <?php
+      session_start();
+    ?>
     <!--JS-->
     <script>
       /*
@@ -24,18 +28,36 @@
         otra manera de hacer que las funcionalidades ajax funcionases desde un fichero externo
       */
      $(function(){
+      //coloca el editor de texto
         $("#userText").Editor();
 
+        //devuelve a la pagina pricipal al pulsar en el logo
         document.getElementById("logo").addEventListener("click",function(){
             window.location = "index.php";
         },false);
+
+        //cuando el raton se pose sobre el boton delete hara una animacion y dejara de hacerla al salir el focus del ratón
+        document.getElementById("delete").addEventListener("mouseover", function(){
+          $("#delete").addClass("fa-flip");
+        }, false);
+        document.getElementById("delete").addEventListener("mouseout", function(){
+          $("#delete").removeClass("fa-flip");
+        }, false);
+
+         //cuando el raton se pose sobre el boton save hara una animacion y dejara de hacerla al salir el focus del raton
+         document.getElementById("save").addEventListener("mouseover", function(){
+          $("#save").addClass("fa-flip");
+        }, false);
+        document.getElementById("save").addEventListener("mouseout", function(){
+          $("#save").removeClass("fa-flip");
+        }, false);
 
         //funcion para conexion ajax al guardar texto
         document.getElementById("save").addEventListener("click",function(){
             let title =$("#title").val();
 
             if(title==null ||title==""||title==" "){
-              $("#saveSuccess").attr("class","text-danger").html("el titulo del archivo no puede quedar en blanco");
+              $("#ajaxMsg").attr("class","text-danger").html("The file title cannot be blank.");
               return false;
             }
 
@@ -62,22 +84,42 @@
           
         },false);
 
+        // funcion ajax para borrar un texto del la bbdd
+        document.getElementById("delete").addEventListener("click", function(){
+
+          if(title==null ||title==""||title==" "){
+              $("#ajaxMsg").attr("class","text-danger").html("The file title cannot be blank.");
+              return false;
+           }
+
+           let formData = {
+              title:$("#title").val()
+           }
+
+           $.post("../controller/deleteText.php", formData, responseDeleteText);
+          
+          
+        }, false);
+
         
           
       });
       //coloca un mensaje de respuesta del servidor al guardar texto
     function responseSaveText(data){
-        data=="success"? $("#saveSuccess").attr("class","text-success").html("guardado con exito") : $("#saveSuccess").attr("class","text-danger").html("error al guardar");
+        data=="success"? $("#ajaxMsg").attr("class","text-success").html("saved successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to save");
     }
+    //escribe el texto recuperado del la bbdd en el editor
     function write(data){
-      $("#userText").Editor("setText",data);
+      data=="error" ? $("#userText").Editor("setText","") : $("#userText").Editor("setText",data);
     }
-    
+    //coloca un mensaje de respuesta del servidor al borrar un texto
+    function responseDeleteText(data){
+      data == "success" ? $("#ajaxMsg").attr("class","text-success").html("delete successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to delete");
+    }
+      
     </script>
-    <!--PHP-->
-    <?php
-      session_start();
-    ?>
+    
+    
     <title>free text</title>
 </head>
 <body>
@@ -149,9 +191,12 @@
                 <button id='save' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow' disabled"; else echo "class='btn btn-primary rounded-pill shadow'";?>>
                   <i class="fa-solid fa-floppy-disk"></i>
                 </button>
+                <button id='delete' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow' disabled"; else echo "class='btn btn-primary rounded-pill shadow'";?>>
+                  <i class="fa-solid fa-trash"></i>
+                </button>
               </span>
           </div>
-          <div id="saveSuccess"></div>
+          <div id="ajaxMsg"></div>
           <div>
             <select id="textList" class="form-control" <?php if(!isset($_SESSION["usuario"]))echo "disabled";?>>
               <option value="" selected>History</option>
