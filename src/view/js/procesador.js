@@ -8,7 +8,7 @@ $(function(){
      fuente: https://stackoverflow.com/questions/13767919/jquery-event-wont-fire-after-ajax-call?rq=3
      autor:Jason Fingar
      */
-    $("body").on("click",".clickElement",function(){
+    $("body").on("mouseover",".clickElement",function(){
         //devuelve a la pagina pricipal al pulsar en el logo
         document.getElementById("logo").addEventListener("click",function(){
             window.location = "index.php";
@@ -44,7 +44,7 @@ $(function(){
    
     //--------------------------------------------------------------funciones AJAX------------------------------------------------------------
 
-    });
+  });
     function saveAjax(){
         let title =$("#title").val();
 

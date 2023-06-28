@@ -22,33 +22,14 @@
      session_start();
     ?>
     <!--JS-->
-    <script>
-      /*
-      por alguna razon no funciona correctamente desde un archivo externo al añadir el gestor de galery
-      y no funciona la solucion implementada en procesador.js , antes de añadir el ult gestor de evento 
-      todo iba bien
-      */
-      $(function(){
-        
-            document.getElementById("typeWriter").addEventListener("click",toProcesador,false);
-            document.getElementById("calculator").addEventListener("click",toCalculator,false);
-            document.getElementById("logo").addEventListener("click",toIndex,false);
-            document.getElementById("galery").addEventListener("click",toGalery,false);
-      });
-
-      function toProcesador(){ window.location = "procesador.php"; }
-      function toCalculator(){ window.location = "calculadora.php"; }
-      function toIndex(){ window.location = "index.php"; }
-      function toGalery(){ window.location = "galery.php";}
-    </script>
-
+    <script src="js/index.js"></script>
     <title>Free office</title>
 </head>
 <body>
 <!-----------------------------------------------Barra navegacion------------------------------------------------------>
     <nav class="navbar navbar-default">
         <div class="container">
-          <div class="navbar-header" id="logo">
+          <div class="navbar-header clickElement" id="logo">
             <span class="navbar-brand">
                 <i class="fa-solid fa-feather"></i>
                 <label class="nav-font">Free Office</label>
@@ -130,12 +111,12 @@
 
     <div class="container container-btn">
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador" id="typeWriter">TypeWriter</button>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador clickElement" id="typeWriter">TypeWriter</button>
             <br><br>
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador" id="galery">Galery</button>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador clickElement" id="galery">Galery</button>
           </div>
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-calculadora" id="calculator">Calculator</button>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-calculadora clickElement" id="calculator">Calculator</button>
         </div>
     </div>
 </body>

@@ -1,10 +1,10 @@
 $(function(){
-    
-        document.getElementById("typeWriter").addEventListener("click",toProcesador,false);
-        document.getElementById("calculator").addEventListener("click",toCalculator,false);
-        document.getElementById("logo").addEventListener("click",toIndex,false);
-        document.getElementById("galery").addEventListener("click",toGalery,false);
-    
+      
+        $("#typeWriter").click(toProcesador);
+        $("#logo").click(toIndex);
+        $("#calculator").click(toCalculator);
+        $("#galery").click(toGalery);
+      
     
   });
   function toProcesador(){ window.location = "procesador.php"; }
