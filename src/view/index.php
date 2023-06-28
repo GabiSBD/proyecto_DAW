@@ -21,7 +21,27 @@
     <?php
      session_start();
     ?>
-    <script src="js/index.js"></script>
+    <!--JS-->
+    <script>
+      /*
+      por alguna razon no funciona correctamente desde un archivo externo al añadir el gestor de galery
+      y no funciona la solucion implementada en procesador.js , antes de añadir el ult gestor de evento 
+      todo iba bien
+      */
+      $(function(){
+        
+            document.getElementById("typeWriter").addEventListener("click",toProcesador,false);
+            document.getElementById("calculator").addEventListener("click",toCalculator,false);
+            document.getElementById("logo").addEventListener("click",toIndex,false);
+            document.getElementById("galery").addEventListener("click",toGalery,false);
+      });
+
+      function toProcesador(){ window.location = "procesador.php"; }
+      function toCalculator(){ window.location = "calculadora.php"; }
+      function toIndex(){ window.location = "index.php"; }
+      function toGalery(){ window.location = "galery.php";}
+    </script>
+
     <title>Free office</title>
 </head>
 <body>
@@ -110,8 +130,10 @@
 
     <div class="container container-btn">
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador" id="freeWritter">FreeWriter</button>
-        </div>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador" id="typeWriter">TypeWriter</button>
+            <br><br>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador" id="galery">Galery</button>
+          </div>
         <div class="col-md-6 col-btn">
             <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-calculadora" id="calculator">Calculator</button>
         </div>

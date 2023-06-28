@@ -1,13 +1,13 @@
 $(function(){
-    document.getElementById("freeWritter").addEventListener("click", 
-    function(){
-        window.location = "procesador.php";
-    },false);
-    document.getElementById("calculator").addEventListener("click", 
-    function(){
-        window.location = "calculadora.php";
-    },false);
-    document.getElementById("logo").addEventListener("click",function(){
-        window.location = "index.php";
-    },false);
-});
+    
+        document.getElementById("typeWriter").addEventListener("click",toProcesador,false);
+        document.getElementById("calculator").addEventListener("click",toCalculator,false);
+        document.getElementById("logo").addEventListener("click",toIndex,false);
+        document.getElementById("galery").addEventListener("click",toGalery,false);
+    
+    
+  });
+  function toProcesador(){ window.location = "procesador.php"; }
+  function toCalculator(){ window.location = "calculadora.php"; }
+  function toIndex(){ window.location = "index.php"; }
+  function toGalery(){ window.location = "galery.php";}
