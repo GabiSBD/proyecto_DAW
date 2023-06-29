@@ -9,10 +9,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!--Bootstrap JS-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!--fontAwesome JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--estilos CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" href="css/galery.css">
     <!--PHP-->
     <?php
       session_start();
@@ -78,6 +81,23 @@
     </nav>
 
       <!-----------------------------------------------contenedor de Galery------------------------------------------------------>
-    
+      <div class="container">
+                  
+        <div class="col-md-8">
+            
+        </div>
+        <div class="col-md-4">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="picture"><i class="fas fa-images fa-lg"></i></label>
+            <div class="col-sm-10">
+              <input type="file" class="form-control" id="picture">
+            </div>
+          </div>
+        </form>
+          
+        </div>    
+
+      </div>
 </body>
 </html>
