@@ -32,6 +32,7 @@ Class Picture{
     //guarda o modifica un texto persistido en la bbdd
     public function savePicture(){
         try{
+            
             $myConnect = new MyConnection();
 
             $conn = $myConnect->get_connect();
@@ -42,13 +43,16 @@ Class Picture{
 
             $resultSet->execute(array(":user"=>$this->id_user, ":title"=>$this->title, ":picture"=>$this->picture));               
 
-            if($resultSet) echo "success";
-            else echo "fail";
+            // if($resultSet) echo "success";
+            // else echo "fail";
+            if($resultSet) header("location:../view/galery.php?response=saved+successfully");
+             else header("location:../view/galery.php?badResponse=failed+to+save");
 
         }catch(PDOException $e){
-            echo "fail";
+            header("location:../view/galery.php?badResponse=failed+to+save");
 
         }
+
 
         
         $resultSet->closeCursor();
