@@ -8,6 +8,7 @@ function toIndex(){
     window.location = "index.php";
 }
 //-----------------------------Funciones AJAX----------------------------------------------------
+//no funcionan queda pendienteimplementacion correcta de momento se hara de manera sincrona
 function uploadAjax(){
     
     // let dato_archivo = $('#picture').prop("files")[0];
@@ -15,9 +16,6 @@ function uploadAjax(){
     //  let datosForm = new FormData();
     //  datosForm.append("picture",new Blob([JSON.stringify(dato_archivo)],{type: 'application/json'}));
 
-    // let datosForm = {
-    //     picture: dato_archivo
-    // };
     let datosForm =$(this).serialize();
 
    // $.post("../controller/upload_controller.php", datosForm, uploadResponse);

@@ -59,37 +59,47 @@ Class Picture{
         $myConnect->close_connect();
 
     }
-    public function deleteText(){
-       try{
-        $myConnect = new MyConnection();
+    // public function deleteText(){
+    //    try{
+    //     $myConnect = new MyConnection();
 
-        $conn = $myConnect->get_connect();
+    //     $conn = $myConnect->get_connect();
 
-        $resultSet = $conn->prepare("delete from pictures where id_user= :id and title= :title ;");
-        $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
+    //     $resultSet = $conn->prepare("delete from pictures where id_user= :id and title= :title ;");
+    //     $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
 
-        if($resultSet) echo "success";
-        else echo "fail";
-       }catch(PDOException $e){
-            echo "fail";
-       }
+    //     if($resultSet) echo "success";
+    //     else echo "fail";
+    //    }catch(PDOException $e){
+    //         echo "fail";
+    //    }
 
-       $resultSet->closeCursor();
-       $myConnect->close_connect();
-    }
-    public function getPictures(){
+    //    $resultSet->closeCursor();
+    //    $myConnect->close_connect();
+    // }
+
+    public static function getPictures($id_user){
         try{
             $myConnect = new MyConnection();
 
             $conn = $myConnect->get_connect();
 
-            $resultSet = $conn->prepare("select picture from pictures where id_user = :id ;");
+            $resultSet = $conn->prepare("select title, picture from pictures where id_user = :id ;");
 
-            $resultSet->execute(array(":id"=>$this->id_user));
+            $resultSet->execute(array(":id"=>$id_user));
 
             if($resultSet->rowCount()>0){
+                $cont=0;
                 while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
                     //TODO falta implementar esta parte
+                    
+                    echo "<img width='210' height:'210' title='".$row["title"]."' src='data:image/jpeg;base64,".base64_encode($row["picture"]) ." '>&nbsp;&nbsp;";
+                    $cont++;
+                    if($cont==3){
+                        $cont=0;
+                        echo "<br><br>";
+                    }
+
                 }
 
             }

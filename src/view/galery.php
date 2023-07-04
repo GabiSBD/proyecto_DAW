@@ -85,7 +85,15 @@
       <!-----------------------------------------------contenedor de Galery------------------------------------------------------>
       <div class="container">
                   
-        <div class="col-md-8">
+        <div class="col-md-8" id="album">
+          <!-- <iframe src="../controller/album_controller.php" id="myIframe" allowfullscreen></iframe> -->
+          <?php
+              
+              if(isset($_SESSION["usuario"])) {
+              require("../model/Class_picture.php");
+              Picture::getPictures($_SESSION["usuario"]["id"]);
+              }
+          ?>
             
         </div>
         <div class="col-md-4">
