@@ -1,6 +1,6 @@
 $(function(){
     
-       //$("#formImage").submit(uploadAjax);
+        //$("#formImage").submit(uploadAjax);
         $("#logo").click(toIndex);
     
 });
@@ -10,16 +10,15 @@ function toIndex(){
 //-----------------------------Funciones AJAX----------------------------------------------------
 function uploadAjax(){
     
-
-    let dato_archivo = $('#picture').prop("files")[0];
+    // let dato_archivo = $('#picture').prop("files")[0];
 
     //  let datosForm = new FormData();
-    //  datosForm.append("picture",dato_archivo);
+    //  datosForm.append("picture",new Blob([JSON.stringify(dato_archivo)],{type: 'application/json'}));
 
-    let datosForm = {
-        picture: dato_archivo
-    };
-    //let datosForm =$(this).serialize();
+    // let datosForm = {
+    //     picture: dato_archivo
+    // };
+    let datosForm =$(this).serialize();
 
    // $.post("../controller/upload_controller.php", datosForm, uploadResponse);
     $.ajax({
@@ -28,10 +27,12 @@ function uploadAjax(){
         //El tipo de respuesta que me devolverá la página en mi caso será un texto indicando el estado de la subida
         dataType: 'text',
         processData: false,
+        contentType: false,
         //El dato pasado a la solicitud
         data: datosForm,
         //El tipo que será la solicitud
         type: 'post',
+        method: 'POST',
         //Si la operación tiene éxito...
         success: uploadResponse
     });
