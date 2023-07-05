@@ -24,6 +24,6 @@
     
     $id_user = $_SESSION["usuario"]["id"];
 
-    $myPicture = new Picture($titlePic,$picture,$id_user);
+    $myPicture = new Picture($titlePic,$typePic,$picture,$id_user);
     $myPicture->savePicture();
 ?>

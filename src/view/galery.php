@@ -22,7 +22,6 @@
     ?>
     <!--JS-->
     <script src="js/galery.js"></script>
-
     <title>Free Galery</title>
 </head>
 <body>

@@ -2,12 +2,31 @@ $(function(){
     
         //$("#formImage").submit(uploadAjax);
         $("#logo").click(toIndex);
+       // $("a").click(downloadAjax);
     
 });
 function toIndex(){
     window.location = "index.php";
 }
 //-----------------------------Funciones AJAX----------------------------------------------------
+function downloadAjax(){
+    let data = {
+        title:$(this).attr("class")
+    };
+
+    
+    $.ajax({
+        type: 'POST',
+        url: "../controller/download_controller.php",
+        data: data,
+        dataType: 'blob',
+        processData: false,
+        success: dowloadResponse
+      });
+
+}
+
+
 //no funcionan queda pendienteimplementacion correcta de momento se hara de manera sincrona
 function uploadAjax(){
     
@@ -42,4 +61,7 @@ function uploadAjax(){
 function uploadResponse(data){
     //respuesta temporal falta desarrollar
     data == "success" ? $("#ajaxMsg").attr("class","text-success").html("saved successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to save");
+}
+function dowloadResponse(data){
+    $(this).attr("href",URL.createObjectURL(data));
 }
