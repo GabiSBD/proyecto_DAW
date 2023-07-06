@@ -85,7 +85,7 @@
       <div class="container">
                   
         <div class="col-md-8" id="album">
-          <!-- <iframe src="../controller/album_controller.php" id="myIframe" allowfullscreen></iframe> -->
+          
           <?php
               
               if(isset($_SESSION["usuario"])) {
