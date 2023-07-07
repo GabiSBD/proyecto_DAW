@@ -96,7 +96,7 @@
             
         </div>
         <div class="col-md-4">
-          <form class="form-horizontal" id="formImage" action="../controller/upload_controller.php" method="post" enctype="multipart/form-data">
+          <form class="form-horizontal" id="formImage" action="../controller/uploadPic_controller.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label class="control-label col-sm-2" for="picture"><i class="fas fa-images fa-lg"></i></label>
               <div class="col-sm-10">

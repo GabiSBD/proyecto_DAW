@@ -117,7 +117,7 @@ Class Picture{
                 //  echo "</tr></table>";
 //-----------------------------------------------------------------------------------------------------------------
                     echo "<td style='text-align:center;'>
-                            <a class='".$row["title"]."' href='../controller/download_controller.php?title=".$row["title"]."'  target='_blank'>
+                            <a class='".$row["title"]."' href='downloadPic.php?title=".$row["title"]."'  target='_blank'>
                                 <img width='210' height:'210' title='click me to dowload :)' src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>
                             </a>
                             <br>
@@ -175,8 +175,8 @@ Class Picture{
             $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
 
             while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
-                echo "<img src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>";
-               //echo base64_encode($row["picture"]);
+                //echo "<img src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>";
+              return $row["picture"];
                
             }
         
@@ -191,7 +191,32 @@ Class Picture{
        $myConnect->close_connect();
 
     }
+    function getType(){
+        try{
+            $myConnect = new MyConnection();
+    
+            $conn = $myConnect->get_connect();
+            $resultSet = $conn->prepare("select type from pictures where id_user = :id and title= :title ;");
+
+            $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
+
+            while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
+                //echo "<img src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>";
+              return $row["type"];
+            }
+
+        }catch(PDOException $e){
+
+            echo "<h1>Upps, something is wrong with server, try later</h1>";
+
+        }
+            $resultSet->closeCursor();
+            $myConnect->close_connect();
+            
+        }
+    
 }
+
 
 
 ?>
