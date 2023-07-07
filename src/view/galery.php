@@ -28,7 +28,7 @@
     <!-----------------------------------------------Barra navegacion------------------------------------------------------>
     <nav class="navbar navbar-default">
         <div class="container">
-          <div class="navbar-header clickElement" id="logo">
+          <div class="navbar-header" id="logo">
             <span class="navbar-brand">
                 <i class="fa-solid fa-feather"></i>
                 <label class="nav-font">Free Office</label>
@@ -95,7 +95,7 @@
           ?>
             
         </div>
-        <div class="col-md-4 clickElement">
+        <div class="col-md-4">
           <form class="form-horizontal" id="formImage" action="../controller/uploadPic_controller.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label id="iconSave" class="control-label col-sm-2" for="picture"><i class="fas fa-images fa-lg"></i></label>

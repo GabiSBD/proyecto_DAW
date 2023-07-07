@@ -8,7 +8,7 @@ $(function(){
      fuente: https://stackoverflow.com/questions/13767919/jquery-event-wont-fire-after-ajax-call?rq=3
      autor:Jason Fingar
      */
-    $("body").on("mouseover",".clickElement",function(){
+    $("body").on("mouseover",function(){
         //devuelve a la pagina pricipal al pulsar en el logo
         document.getElementById("logo").addEventListener("click",function(){
             window.location = "index.php";

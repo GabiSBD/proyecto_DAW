@@ -1,5 +1,5 @@
 $(function(){
-    $("body").on("mouseover",".clickElement",function(){
+    $("body").on("mouseover",function(){
         
         document.getElementById("logo").addEventListener("click",toIndex,false);
         document.getElementById("upload").addEventListener("mouseover",iconSpin,false);

@@ -31,7 +31,7 @@
 <!-----------------------------------------------Barra navegacion------------------------------------------------------>
 <nav class="navbar navbar-default">
         <div class="container">
-          <div class="navbar-header clickElement" id="logo">
+          <div class="navbar-header " id="logo">
             <span class="navbar-brand">
                 <i class="fa-solid fa-feather"></i>
                 <label class="nav-font">Free Office</label>
@@ -90,20 +90,20 @@
           <textarea name="userText" id="userText"></textarea>
       </div>
       <div class="col-md-4 options-app">
-          <div class="input-group">    
+          <div class="input-group ">    
               <input type='text' class="form-control" name='title' id='title' placeholder='Title'<?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>
               <span class="input-group-btn">
-                <button id='save' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow' disabled clickElement"; else echo "class='btn btn-primary rounded-pill shadow clickElement'";?>>
+                <button id='save' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow' disabled "; else echo "class='btn btn-primary rounded-pill shadow '";?>>
                   <i class="fa-solid fa-floppy-disk"></i>
                 </button>
-                <button id='delete' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow clickElement' disabled"; else echo "class='btn btn-primary rounded-pill shadow clickElement'";?>>
+                <button id='delete' <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow ' disabled"; else echo "class='btn btn-primary rounded-pill shadow '";?>>
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </span>
           </div>
           <div id="ajaxMsg"></div>
           <div>
-            <select id="textList" class="form-control clickElement" <?php if(!isset($_SESSION["usuario"]))echo "disabled";?>>
+            <select id="textList" class="form-control" <?php if(!isset($_SESSION["usuario"]))echo "disabled";?>>
               <option value="" selected>History</option>
               <?php
                 include("../controller/history.php"); 
