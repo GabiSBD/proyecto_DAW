@@ -151,10 +151,10 @@ Class Picture{
                  echo "</tr></table>";
             }
             else{
-                echo "error";
+                echo "empty";
             }
         }catch(PDOException $e){
-            echo "error";
+            echo "Upps, something is wrong with server, try later";
             
 
         }
@@ -191,29 +191,30 @@ Class Picture{
        $myConnect->close_connect();
 
     }
-    function getType(){
-        try{
-            $myConnect = new MyConnection();
+    // pendiente de borrar
+    // function getType($title){
+    //     try{
+    //         $myConnect = new MyConnection();
     
-            $conn = $myConnect->get_connect();
-            $resultSet = $conn->prepare("select type from pictures where id_user = :id and title= :title ;");
+    //         $conn = $myConnect->get_connect();
+    //         $resultSet = $conn->prepare("select type from pictures where id_user = :id and title= :title ;");
 
-            $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
+    //         $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$title));
 
-            while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
-                //echo "<img src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>";
-              return $row["type"];
-            }
+    //         while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
+    //             //echo "<img src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>";
+    //           return $row["type"];
+    //         }
 
-        }catch(PDOException $e){
+    //     }catch(PDOException $e){
 
-            echo "<h1>Upps, something is wrong with server, try later</h1>";
+    //         echo "<h1>Upps, something is wrong with server, try later</h1>";
 
-        }
-            $resultSet->closeCursor();
-            $myConnect->close_connect();
+    //     }
+    //         $resultSet->closeCursor();
+    //         $myConnect->close_connect();
             
-        }
+    //     }
     
 }
 

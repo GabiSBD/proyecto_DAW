@@ -95,12 +95,12 @@
           ?>
             
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 clickElement">
           <form class="form-horizontal" id="formImage" action="../controller/uploadPic_controller.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label class="control-label col-sm-2" for="picture"><i class="fas fa-images fa-lg"></i></label>
+              <label id="iconSave" class="control-label col-sm-2" for="picture"><i class="fas fa-images fa-lg"></i></label>
               <div class="col-sm-10">
-                <input type="file" class="form-control clickElement" id="picture" name="picture" accept="image/jpeg" <?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>
+                <input type="file" class="form-control" id="picture" name="picture" accept="image/jpeg" <?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>
                 <input type="submit" value="Upload" id="upload" <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow clickElement' disabled"; else echo "class='btn btn-primary rounded-pill shadow clickElement'";?>>
                 <?php
                   if(isset($_GET["response"])){ 

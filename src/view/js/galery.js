@@ -1,12 +1,21 @@
 $(function(){
-    
-        //$("#formImage").submit(uploadAjax);
-        $("#logo").click(toIndex);
+    $("body").on("mouseover",".clickElement",function(){
+        
+        document.getElementById("logo").addEventListener("click",toIndex,false);
+        document.getElementById("upload").addEventListener("mouseover",iconSpin,false);
+        document.getElementById("upload").addEventListener("mouseout",iconStop,false);
+    });
+        
     
 });
-function toIndex(){
-    window.location = "index.php";
-}
+function toIndex(){ window.location = "index.php"; }
+function iconSpin(){ $("#iconSave").addClass("fa-bounce"); }
+function iconStop(){ $("#iconSave").removeClass("fa-bounce"); }
+
+
+
+
+
 //-----------------------------Funciones AJAX----------------------------------------------------
 // //no funcionan queda pendienteimplementacion correcta de momento se hara de manera sincrona
 // function uploadAjax(){

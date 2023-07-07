@@ -16,13 +16,19 @@
 
     <title>Download link page</title>
     <?php
+        
         require("../controller/downloadPic_controller.php");
+
+        //separamos el nombre del archivo pasado en title de su extension;
+        $title = $_GET["title"];
+        $id_user = $_SESSION["usuario"]["id"];
+        $extension =strtolower(".".pathinfo($title, PATHINFO_EXTENSION));
     ?>
 </head>
 <body>
     <div class="container">
         <div class="col-md-12 downloadLink">
-            <a  download href="#" ><button class="btn btn-info rounded-pill shadow" >CLICK TO DOWNLOAD</button></a>
+            <a  download href='../assets/<?php echo $id_user.$extension;?>' ><button class="btn btn-info rounded-pill shadow" >CLICK TO DOWNLOAD</button></a>
         </div>
     </div>
     

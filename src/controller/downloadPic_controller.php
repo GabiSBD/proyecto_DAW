@@ -12,16 +12,13 @@
     $pic = $myPicture->getPicture();
     $pic = imagecreatefromstring($pic); 
 
-    $type = $myPicture->getType();
+    //separamos el nombre del archivo pasado en title de su extension;
+    $extension =strtolower(".".pathinfo($title, PATHINFO_EXTENSION));
 
-    $Formats = ["image/jpeg"=>".jpeg","image/jpg"=>".jpg" ,"image/pjpeg"=>".pjpeg", "image/gif"=>".gif", "image/png"=>".png"];
-
-
-
-    $path= "../assets/".$id.$Formats[$type]; 
+    $path= "../assets/".$id.$extension; 
     $file = fopen($path, "w");
 
-    switch($Formats[$type]){
+    switch($extension){
         case ".jpeg"||".jpg"||".pjpeg":
             imagejpeg($pic, $file);
             break;
@@ -33,6 +30,8 @@
             break;
     }
     fclose($file);
+
+    
 
 
 
