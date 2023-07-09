@@ -117,7 +117,7 @@ Class Picture{
                 //  echo "</tr></table>";
 //-----------------------------------------------------------------------------------------------------------------
                     echo "<td style='text-align:center;'>
-                            <a class='".$row["title"]."' href='downloadPic.php?title=".$row["title"]."'  target='_blank'>
+                            <a class='".$row["title"]."' href='downloadPage.php?title=".$row["title"]."'  target='_blank'>
                                 <img width='210' height:'210' title='click me to dowload :)' src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>
                             </a>
                             <br>

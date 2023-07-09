@@ -13,16 +13,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/downloadPic.css">
+    <!-- JS -->
+    <script src="js/downloadPage.js"></script>
 
     <title>Download link page</title>
     <?php
         
+       if(isset($_GET["title"])){
         require("../controller/downloadPic_controller.php");
 
         //separamos el nombre del archivo pasado en title de su extension;
         $title = $_GET["title"];
         $id_user = $_SESSION["usuario"]["id"];
         $extension =strtolower(".".pathinfo($title, PATHINFO_EXTENSION));
+       }
     ?>
 </head>
 <body>
