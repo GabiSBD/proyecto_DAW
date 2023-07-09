@@ -16,19 +16,19 @@ $(function(){
   
         //cuando el raton se pose sobre el boton delete hara una animacion y dejara de hacerla al salir el focus del ratón
         document.getElementById("delete").addEventListener("mouseover", function(){
-          $("#delete").addClass("fa-flip");
+          $("#delete").addClass("fa-bounce");
         }, false);
         document.getElementById("delete").addEventListener("mouseout", function(){
-          $("#delete").removeClass("fa-flip");
+          $("#delete").removeClass("fa-bounce");
         }, false);
   //--------------------------------------------------------------------------------------------------------------------------
          //cuando el raton se pose sobre el boton save hara una animacion y dejara de hacerla al salir el focus del raton
          document.getElementById("save").addEventListener("mouseover", function(){
-          $("#save").addClass("fa-flip");
+          $("#save").addClass("fa-bounce");
         }, false);
 
         document.getElementById("save").addEventListener("mouseout", function(){
-          $("#save").removeClass("fa-flip");
+          $("#save").removeClass("fa-bounce");
         }, false);
   //--------------------------------------------------------------------------------------------------------
         //funcion para conexion ajax al guardar texto
@@ -39,8 +39,26 @@ $(function(){
   
         // funcion ajax para borrar un texto del la bbdd
         document.getElementById("delete").addEventListener("click",deleteAjax , false);
+  //------------------------------------------------------------------------------------------------------------
+        //funcion para colocar un link a downloadPage.php
+        document.getElementById("textList").addEventListener("change",setLink, false);
+        //animacion en link a downloadPage
+        document.getElementById("iconDload").addEventListener("mouseover",function(){
+          $("#downloadButton").addClass("fa-bounce");
+        },false);
+        document.getElementById("iconDload").addEventListener("mouseout",function(){
+          $("#downloadButton").removeClass("fa-bounce");
+        },false);
   
     });
+
+    function setLink(){
+      $("#downloadLink").html(
+        "<a href='downloadPage.php?txtTitle="+$("#textList").val()+"' target='_blank'>"+
+          "<button class='btn btn-primary rounded-pill shadow' id='downloadButton'><i id='iconDload' class='fa-solid fa-download fa-lg'></i></button>"+
+        "</a>"
+      );
+    }
    
     //--------------------------------------------------------------funciones AJAX------------------------------------------------------------
 

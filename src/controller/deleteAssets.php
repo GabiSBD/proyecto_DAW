@@ -2,7 +2,7 @@
     session_start();
     $id = $_SESSION["usuario"]["id"];
 
-    $formats = ["jpeg", ".jpg" , ".pjpeg", ".gif", ".png", ".txt", ".odt"];
+    $formats = ["jpeg", ".jpg" , ".pjpeg", ".gif", ".png", ".odt"];
 
     for($i=0; $i<count($formats); $i++){
         

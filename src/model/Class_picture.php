@@ -95,29 +95,8 @@ Class Picture{
                 
                  while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
                    
-//--------------------------------------------------------------------------------------------------------------------------
-
-                //     echo "<td style='text-align:center;'>
-                //             <a class='".$row["title"]."' href='../controller/download_controller.php?title=".$row["title"]."'  target='_blank'>
-                //                 <img width='210' height:'210' title='click me to dowload :)' src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>
-                //             </a>
-                //             <br>
-                //             <span style='margin-right: 7px; ' class='pic-footer'>".$row["title"]."</span>
-                //             <button class='delete-btn btn btn-danger rounded-pill shadow' id='".$row["title"]."'>
-                //                 <i class='fa-solid fa-trash'></i>
-                //             </button>
-                //           </td>";
-                //     $cont++;
-                //     if($cont==3){
-                //         $cont=0;
-                //         echo "</tr><tr>";
-                //     }
-
-                //  }
-                //  echo "</tr></table>";
-//-----------------------------------------------------------------------------------------------------------------
                     echo "<td style='text-align:center;'>
-                            <a class='".$row["title"]."' href='downloadPage.php?title=".$row["title"]."'  target='_blank'>
+                            <a href='downloadPage.php?title=".$row["title"]."'  target='_blank'>
                                 <img width='210' height:'210' title='click me to dowload :)' src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>
                             </a>
                             <br>

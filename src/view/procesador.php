@@ -109,6 +109,7 @@
                 include("../controller/history.php"); 
               ?>
             </select>
+            <div id="downloadLink"></div>
           <div>    
 
     </div>

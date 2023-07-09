@@ -99,7 +99,7 @@
             $myConnect->close_connect();
 
         }
-        //obtiene un texto persistido en la bbdd
+        //obtiene un texto persistido en la bbdd y lo escribe donde es devuelto
         public function getText(){
             try{
                 $myConnect = new MyConnection();
@@ -116,6 +116,39 @@
                     $text =$row["text"];
                     
                     echo $text;
+
+                }
+                else{
+                    echo "error";
+                }
+            }catch(PDOException $e){
+                echo "error";
+                
+
+            }
+
+            
+            $resultSet->closeCursor();
+            $myConnect->close_connect();
+        }
+
+        //devuelve el texto persistido en BBDD
+        public function getFile(){
+            try{
+                $myConnect = new MyConnection();
+
+                $conn = $myConnect->get_connect();
+
+                $resultSet = $conn->prepare("select text from texts where id_user = :id and title=:title ;");
+
+                $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
+
+                if($resultSet->rowCount()>0){
+                    $row = $resultSet->fetch(PDO::FETCH_ASSOC);
+
+                    $text =$row["text"];
+                    
+                    return $text;
 
                 }
                 else{
