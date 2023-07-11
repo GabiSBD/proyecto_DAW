@@ -14,7 +14,7 @@ Class Picture{
         $this->id_user = $id_user;
     }
 
-    // verifica si un texto ya existe en la bbdd  devolviendo un booleano
+    // verifica si una imagen ya existe en la bbdd  devolviendo un booleano
     private function isExist(){
         $myConnect = new MyConnection();
 
@@ -170,30 +170,6 @@ Class Picture{
        $myConnect->close_connect();
 
     }
-    // pendiente de borrar
-    // function getType($title){
-    //     try{
-    //         $myConnect = new MyConnection();
-    
-    //         $conn = $myConnect->get_connect();
-    //         $resultSet = $conn->prepare("select type from pictures where id_user = :id and title= :title ;");
-
-    //         $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$title));
-
-    //         while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
-    //             //echo "<img src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>";
-    //           return $row["type"];
-    //         }
-
-    //     }catch(PDOException $e){
-
-    //         echo "<h1>Upps, something is wrong with server, try later</h1>";
-
-    //     }
-    //         $resultSet->closeCursor();
-    //         $myConnect->close_connect();
-            
-    //     }
     
 }
 

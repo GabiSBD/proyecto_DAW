@@ -23,6 +23,7 @@
     ?>
     <!--JS-->
     <script src="js/index.js"></script>
+ 
     <title>Free office</title>
 </head>
 <body>
@@ -119,10 +120,11 @@
             <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="calculator">Calculator</button>
         </div>
         <div class="col-md-12 col-btn">
-            <?php 
-              if(isset($_SESSION["usuario"]["isAdmin"]) && $_SESSION["usuario"]["isAdmin"]==1) 
+            <?php
+              if(isset($_SESSION["usuario"]) && $_SESSION["usuario"]["isAdmin"]==1)
               echo "<br><br><button class='btn btn-primary rounded-pill shadow btn-freeOffice' id='adminArea'>Admin Area</button>";
             ?>
+            
         </div>
     </div>
 </body>
