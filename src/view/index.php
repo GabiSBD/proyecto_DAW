@@ -111,12 +111,18 @@
 
     <div class="container container-btn">
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador" id="typeWriter">TypeWriter</button>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="typeWriter">TypeWriter</button>
             <br><br>
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-procesador" id="galery">Galery</button>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="galery">Galery</button>
           </div>
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice btn-calculadora" id="calculator">Calculator</button>
+            <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="calculator">Calculator</button>
+        </div>
+        <div class="col-md-12 col-btn">
+            <?php 
+              if(isset($_SESSION["usuario"]["isAdmin"]) && $_SESSION["usuario"]["isAdmin"]==1) 
+              echo "<br><br><button class='btn btn-primary rounded-pill shadow btn-freeOffice' id='adminArea'>Admin Area</button>";
+            ?>
         </div>
     </div>
 </body>

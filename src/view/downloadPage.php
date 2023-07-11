@@ -39,7 +39,7 @@
 <body>
     <div class="container">
         <div class="col-md-12 downloadLink">
-            <a  download href='../assets/<?php echo $id_user.$extension;?>' ><button class="btn btn-info rounded-pill shadow" >CLICK TO DOWNLOAD</button></a>
+            <a download href='../assets/<?php echo $id_user.$extension;?>'><button class="btn btn-info rounded-pill shadow">CLICK TO DOWNLOAD</button></a>
         </div>
     </div>
     
