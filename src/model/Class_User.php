@@ -55,7 +55,7 @@
             }else{
                //devolvemos por url un mensaje de error que servira para mostrar un mensaje en el form de index.php
                 
-                header("location:../view/index.php?error=los+datos+no+corresponden+a+ningun+usuario");
+                header("location:../view/index.php?error=The+data+does+not+correspond+to+any+user.");
                 
             }
         }
@@ -65,6 +65,7 @@
             if(!$this->isUser()){
                 $myConnection = new MyConnection();
                 $conn = $myConnection->get_connect();
+
                 // persistimos el usuario nuevo
                 $resultSet = $conn->prepare("insert into users (name,passwrd) values (:name, AES_ENCRYPT(:pass,'key'));");
                 $resultSet -> execute(array(":name"=>$this->name , ":pass"=>$this->passwrd));
@@ -84,6 +85,36 @@
             }else{
                 header("location:../view/index.php?error=el+usuario+ya+existe");
             }
+        }
+
+        public static function setIsAdmin($id){
+           try{
+                $myConnection = new MyConnection();
+                $conn = $myConnection->get_connect();
+
+                $isAdminSet =$conn->prepare("select isAdmin from users where id= :id ;");
+                $isAdminSet->execute(array(":id"=>$id));
+
+                $isAdmin = $isAdminSet->fetch(PDO::FETCH_ASSOC);
+
+                if($isAdmin["isAdmin"] == 1){
+                    $setAdmin = $conn->prepare("update users set isAdmin= 0 where id= :id ;");
+                    $setAdmin->execute(array(":id"=>$id));
+                }else{
+                    $setAdmin = $conn->prepare("update users set isAdmin= 1 where id= :id ;");
+                    $setAdmin->execute(array(":id"=>$id));
+                }
+                
+
+            }catch(PDOException $e){
+                return false;
+            }
+
+            $setAdmin->closeCursor();
+            $isAdminSet->closeCursor();
+            $myConnection->close_connect();
+
+            return true;
         }
 
         public function deleteUser(){
@@ -119,7 +150,7 @@
                 $deleteUser->execute(array(":id"=>$id_user));
 
                 //reiniciamos y configuramos de nuevo los indices de auto increment de ambas tablas
-                $this->setAutoIncrement();
+                //$this->setAutoIncrement();
 
                 $_SESSION["usuario"]=null;
                 session_destroy();
@@ -141,29 +172,48 @@
             }
         }
         //borra un usuario desde el panel de control del admin
-        public function dropUser($id){
+        public  static function dropUser($id){
             try{
                 $MyConnection = new MyConnection();
                 $conn = $MyConnection->get_connect();
 
                 $id_user = $id;
-                //TODO seguir implementando fijandose en deleteuser()
+                
+                //borramos los textos asociados al id del usuario
+                $deleteTexts = $conn->prepare("delete from texts where id_user= :id_user;");
+                $deleteTexts->execute(array(":id_user"=>$id));
+
+                //borramos las imaganes asociadas al is del usuario
+                $deletePics = $conn->prepare("delete from pictures where id_user= :id_user;");
+                $deletePics->execute(array(":id_user"=>$id));
+
+                //borramos el usuario
+                $deleteUser = $conn->prepare("delete from users where id=:id;");
+                $deleteUser->execute(array(":id"=>$id_user));
+
+                
                 
             }catch(PDOException $e){
-                echo "error";
+                return false;
             }
             
+            $deleteTexts->closeCursor();
+            $deletePics->closeCursor();
+            $deleteUser->closeCursor();
             $MyConnection->close_connect();
+
+            return true;
 
 
         }
-        //regula el indice del autoincremento del id de la tabla users
-       private function setAutoIncrement(){
+       /* //regula el indice del autoincremento del id de la tabla users
+       private static function setAutoIncrement(){
             $Connection = new MyConnection();
             $conn = $Connection->get_connect();
 
             $auto_idUser = $conn->query("select MAX(id) from users");
             $auto_idTxt = $conn->query("select MAX(id) from texts");
+            $auto_idPic = $conn->query("select MAX(id) from pictures");
 
             while($rowTxt =$auto_idTxt->fetch()){
                 $conn->exec("alter table texts AUTO_INCREMENT=".$rowTxt[0].";");
@@ -171,13 +221,17 @@
             while($rowUser = $auto_idUser->fetch()){
                 $conn->exec("alter table users AUTO_INCREMENT=".$rowUser[0].";");
             }
+            while($rowPic = $auto_idUser->fetch()){
+                $conn->exec("alter table pictures AUTO_INCREMENT=".$rowPic[0].";");
+            }
 
             $auto_idTxt->closeCursor();
+            $auto_idPic->closeCursor();
             $auto_idUser->closeCursor();
             $Connection->close_connect();
             return true;
 
-        }
+        }*/
 
         //dibuja la tabla de control del area de administrador
         public static function adminTable(){
@@ -201,8 +255,8 @@
                             <td>".$row["id"]."</td>
                             <td>".$row["name"]."</td>
                             <td>".($row["isAdmin"]==1?"<i class='fa-solid fa-check'></i>":"<i class='fa-solid fa-x'></i>")."</td>
-                            <td><button class='btn btn-danger rounded-pill shadow id='".$row["id"]."'><i class='fa-solid fa-user-slash'></i></button>
-                            <button class='btn btn-info rounded-pill shadow id='admin-".$row["id"]."'><i class='fa-solid fa-check'></i>/<i class='fa-thin fa-x'></i></button></td>
+                            <td><button class='btn btn-danger rounded-pill shadow delete-btn' id='".$row["id"]."'><i class='fa-solid fa-user-slash'></i></button>
+                            <button class='btn btn-info rounded-pill shadow isAdmin-btn' id='admin-".$row["id"]."'><i class='fa-solid fa-check'></i>/<i class='fa-thin fa-x'></i></button></td>
                             </tr>";
                     
                 }
