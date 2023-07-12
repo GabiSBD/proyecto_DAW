@@ -8,10 +8,13 @@ $(function(){
 
       let isAdminBtn = document.querySelectorAll(".isAdmin-btn");
       for(let i=0; i<isAdminBtn.length;i++) isAdminBtn[i].addEventListener("click",changeAdmin,false);
+
+      document.getElementById("logo").addEventListener("click",toIndex,false);
     });
     
 
   });
+  function toIndex(){ window.location = "index.php"; }
 //----------------------funciones AJAX------------------------------------------------
   function adminTable(){
     $.post("../controller/adminTable.php",drawTable);

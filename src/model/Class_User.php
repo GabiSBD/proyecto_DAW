@@ -249,14 +249,22 @@
                         <th>Options</th>
                         
                     </tr>";
+                // usaremos esta informacion para deshabilitar las acciones sobre el usuario que ingresa en el area de admin
+                $id_usuarioActual = $_SESSION["usuario"]["id"];
 
                 while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
                     echo " <tr>
                             <td>".$row["id"]."</td>
                             <td>".$row["name"]."</td>
                             <td>".($row["isAdmin"]==1?"<i class='fa-solid fa-check'></i>":"<i class='fa-solid fa-x'></i>")."</td>
-                            <td><button class='btn btn-danger rounded-pill shadow delete-btn' id='".$row["id"]."'><i class='fa-solid fa-user-slash'></i></button>
-                            <button class='btn btn-info rounded-pill shadow isAdmin-btn' id='admin-".$row["id"]."'><i class='fa-solid fa-check'></i>/<i class='fa-thin fa-x'></i></button></td>
+                            <td>
+                                <button class='btn btn-danger rounded-pill shadow delete-btn' id='".$row["id"]."' ".($id_usuarioActual==$row["id"] ? "disabled":"").">
+                                    <i class='fa-solid fa-user-slash'></i>
+                                </button>
+                                <button class='btn btn-info rounded-pill shadow isAdmin-btn' id='admin-".$row["id"]."' ". ($id_usuarioActual==$row["id"] ? "disabled":"").">
+                                    <i class='fa-solid fa-check'></i>/<i class='fa-thin fa-x'></i>
+                                </button>
+                            </td>
                             </tr>";
                     
                 }
