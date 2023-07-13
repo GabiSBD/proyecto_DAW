@@ -8,4 +8,10 @@ body{
     font-weight: 300;
     font-style: italic;
 }
+td,.picFooter{
+    text-align: center;
+}
+.notVisible{
+    display: none;
+}
 

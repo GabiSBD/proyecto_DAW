@@ -1,4 +1,7 @@
 $(function(){
+
+    window.addEventListener("load",getPictures,false);
+
     $("body").on("mouseover",function(){
         
         document.getElementById("logo").addEventListener("click",toIndex,false);
@@ -17,6 +20,10 @@ function iconStop(){ $("#iconSave").removeClass("fa-bounce"); }
 
 
 //-----------------------------Funciones AJAX----------------------------------------------------
+    function getPictures(){
+        $.post("../controller/paintGalery.php",responsePaintGalery);
+    }
+
 // //no funcionan queda pendienteimplementacion correcta de momento se hara de manera sincrona
 // function uploadAjax(){
     
@@ -46,9 +53,13 @@ function iconStop(){ $("#iconSave").removeClass("fa-bounce"); }
 
 //     return false;
 // }
-// //-------------------------------Respuestas AJAX------------------------------------------------
 
+// //-------------------------------Respuestas AJAX------------------------------------------------
+    function responsePaintGalery(data){
+        $("#album").html(data);
+    }
 // function uploadResponse(data){
 //     //respuesta temporal falta desarrollar
 //     data == "success" ? $("#ajaxMsg").attr("class","text-success").html("saved successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to save");
 // }
+   

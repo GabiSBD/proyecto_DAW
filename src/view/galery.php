@@ -84,17 +84,7 @@
       <!-----------------------------------------------contenedor de Galery------------------------------------------------------>
       <div class="container">
                   
-        <div class="col-md-8" id="album">
-          
-          <?php
-              
-              if(isset($_SESSION["usuario"])) {
-              require("../model/Class_picture.php");
-              Picture::getPictures($_SESSION["usuario"]["id"]);
-              }
-          ?>
-            
-        </div>
+        <div class="col-md-8" id="album"></div>
         <div class="col-md-4">
           <form class="form-horizontal" id="formImage" action="../controller/uploadPic_controller.php" method="post" enctype="multipart/form-data">
             <div class="form-group">

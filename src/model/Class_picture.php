@@ -95,7 +95,7 @@ Class Picture{
                 
                  while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
                    
-                    echo "<td style='text-align:center;'>
+                    echo "<td>
                             <a href='downloadPage.php?title=".$row["title"]."'  target='_blank'>
                                 <img width='210' height:'210' title='click me to dowload :)' src='data:application/octet-stream;base64,".base64_encode($row["picture"]) ." '>
                             </a>
@@ -106,11 +106,11 @@ Class Picture{
                                     <span class='caret'></span>
                                 </button>
                                 <ul class='dropdown-menu' aria-labelledby='dropdownMenu1'>
-                                    <li style='text-align:center;'>
+                                    <li class='picFooter'>
                                         <form action='../controller/deletePic_controller.php' method='get'>
                                             <div class='input-group'>
                                                 <span class='input-group-addon' id='basic-addon1'><i class='fa-solid fa-trash' style='color: #ff0000;'></i></span>
-                                                <input type='text' style='display: none;' value='".$row["title"]."' name='title'>
+                                                <input type='text' class='notVisible' value='".$row["title"]."' name='title'>
                                                 <input type='submit' value='delete' class=' form-control btn btn-default rounded-pill shadow'>
                                             </div>
                                         </form>   
