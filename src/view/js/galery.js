@@ -3,7 +3,11 @@ $(function(){
     window.addEventListener("load",getPictures,false);
 
     $("body").on("mouseover",function(){
-        document.getElementById("formImage").addEventListener("submit",uploadAjax,false);
+        let deleteBtns = document.querySelectorAll(".delete-btn");
+        for(let i=0; i<deleteBtns.length; i++) deleteBtns[i].addEventListener("click",deletePic,false);
+
+        document.getElementById("upload").addEventListener("click",uploadAjax,false);
+       
         document.getElementById("logo").addEventListener("click",toIndex,false);
         document.getElementById("upload").addEventListener("mouseover",iconSpin,false);
         document.getElementById("upload").addEventListener("mouseout",iconStop,false);
@@ -23,7 +27,10 @@ function iconStop(){ $("#iconSave").removeClass("fa-bounce"); }
 function getPictures(){
     $.post("../controller/paintGalery.php",responsePaintGalery);
 }
-
+function deletePic(){
+    let formdata = {title: $(this).attr("id")};
+    $.post("../controller/deletePic_controller.php",formdata,deleteResponse);
+}
 
 function uploadAjax(e){
     e.preventDefault();
@@ -56,7 +63,13 @@ function responsePaintGalery(data){
     $("#album").html(data);
 }
 function uploadResponse(data){
-    data == "success" ? $("#ajaxMsg").attr("class","text-success").html("saved successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to save");
+    if(data=="success") $("#ajaxMsg").attr("class","text-success").html("saved successfully");
+    else if(data == "notValid") $("#ajaxMsg").attr("class","text-danger").html("failed to save, invalid file format");
+    else $("#ajaxMsg").attr("class","text-danger").html("failed to save");
+    getPictures();
+}
+function deleteResponse(data){
+    data == "success" ? $("#ajaxMsg").attr("class","text-success").html("delete successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to delete");
     getPictures();
 }
    

@@ -86,18 +86,17 @@
                   
         <div class="col-md-8" id="album"></div>
         <div class="col-md-4">
-          <form class="form-horizontal" id="formImage" action="../controller/uploadPic_controller.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label id="iconSave" class="control-label col-sm-2" for="picture"><i class="fas fa-images fa-lg"></i></label>
               <div class="col-sm-10">
                 <input type="file" class="form-control" id="picture" name="picture" accept="image/jpeg" <?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>
-                <input type="submit" value="Upload" id="upload" <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow clickElement' disabled"; else echo "class='btn btn-primary rounded-pill shadow clickElement'";?>>
+                <button id="upload" <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow' disabled"; else echo "class='btn btn-primary rounded-pill shadow'";?>>
+                  <i class="fa-solid fa-upload"></i>
+                </button>
                <div id='ajaxMsg'></div>
               </div>
             </div>
-          </form>  
-        </div>    
-
+        </div>
       </div>
 </body>
 </html>

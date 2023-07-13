@@ -69,10 +69,10 @@ Class Picture{
         $resultSet = $conn->prepare("delete from pictures where id_user= :id and title= :title ;");
         $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
 
-        if($resultSet) header("location:../view/galery.php?response=deleted+successfully+");
-        else header("location:../view/galery.php?badResponse=failed+to+delete");
+        if($resultSet) echo "success";
+        else echo "fail";
        }catch(PDOException $e){
-            header("location:../view/galery.php?badResponse=failed+to+save");
+            echo "fail";
        }
 
        $resultSet->closeCursor();
@@ -107,14 +107,11 @@ Class Picture{
                                 </button>
                                 <ul class='dropdown-menu' aria-labelledby='dropdownMenu1'>
                                     <li class='picFooter'>
-                                        <form action='../controller/deletePic_controller.php' method='get'>
-                                            <div class='input-group'>
-                                                <span class='input-group-addon' id='basic-addon1'><i class='fa-solid fa-trash' style='color: #ff0000;'></i></span>
-                                                <input type='text' class='notVisible' value='".$row["title"]."' name='title'>
-                                                <input type='submit' value='delete' class=' form-control btn btn-default rounded-pill shadow'>
-                                            </div>
-                                        </form>   
-                                        
+                                        <div class='input-group'>
+                                            <span class='input-group-addon' id='basic-addon1'><i class='fa-solid fa-trash' style='color: #ff0000;'></i></span>
+                                            
+                                            <button id='".$row["title"]."' class='form-control btn btn-default rounded-pill shadow delete-btn'>Delete</button>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>

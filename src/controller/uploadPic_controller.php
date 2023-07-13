@@ -11,19 +11,19 @@
 //verificacion de formato del file
     $validFormats = ["image/jpeg","image/jpg" ,"image/pjpeg", "image/gif", "image/png"];
     if(!in_array($typePic,$validFormats,true)){
-        header("location:../view/galery.php?badResponse=failed+to+save,+invalid+Format");
-        exit();
+        echo "notValid";
+        
+    }else{
+    //obtencion del archivo a persistir en la bbdd
+        $file = fopen($tmpPic,"r");
+        $picture = fread($file,$sizePic);
+
+        fclose($file);
+        
+        
+        $id_user = $_SESSION["usuario"]["id"];
+
+        $myPicture = new Picture($titlePic,$typePic,$picture,$id_user);
+        $myPicture->savePicture();
     }
-
-//obtencion del archivo a persistir en la bbdd
-    $file = fopen($tmpPic,"r");
-    $picture = fread($file,$sizePic);
-
-    fclose($file);
-    
-    
-    $id_user = $_SESSION["usuario"]["id"];
-
-    $myPicture = new Picture($titlePic,$typePic,$picture,$id_user);
-    $myPicture->savePicture();
 ?>
