@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,300;1,400;1,500&display=swap');
+
 table,tr,th,td{
     padding: 10px;
+}
+body{
+    font-family: 'Roboto Mono';
+    font-weight: 500;
+    font-style: italic;
 }
