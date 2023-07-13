@@ -46,11 +46,11 @@ Class Picture{
             $resultSet->execute(array(":user"=>$this->id_user, ":title"=>$this->title, ":picture"=>$this->picture, ":type"=>$this->type));               
 
             
-            if($resultSet) header("location:../view/galery.php?response=saved+successfully");
-             else header("location:../view/galery.php?badResponse=failed+to+save");
+            if($resultSet) echo "success";
+             else echo "fail";
 
         }catch(PDOException $e){
-            header("location:../view/galery.php?badResponse=failed+to+save");
+            echo "fail";
 
         }
 

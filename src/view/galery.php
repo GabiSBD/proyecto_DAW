@@ -92,16 +92,7 @@
               <div class="col-sm-10">
                 <input type="file" class="form-control" id="picture" name="picture" accept="image/jpeg" <?php if(!isset($_SESSION["usuario"]))echo " disabled"?>>
                 <input type="submit" value="Upload" id="upload" <?php if(!isset($_SESSION["usuario"]))echo "class='btn btn-danger rounded-pill shadow clickElement' disabled"; else echo "class='btn btn-primary rounded-pill shadow clickElement'";?>>
-                <?php
-                  if(isset($_GET["response"])){ 
-                    echo "<div class='text-success'>".$_GET["response"]."</div>";
-                    unset($_GET["response"]);
-                  }
-                  if(isset($_GET["badResponse"])){
-                    echo "<div class='text-danger'>".$_GET["badResponse"]."</div>";
-                    unset($_GET["badResponse"]);
-                  }
-                ?>
+               <div id='ajaxMsg'></div>
               </div>
             </div>
           </form>  
