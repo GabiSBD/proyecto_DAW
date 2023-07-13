@@ -32,8 +32,8 @@ function deletePic(){
     $.post("../controller/deletePic_controller.php",formdata,deleteResponse);
 }
 
-function uploadAjax(e){
-    e.preventDefault();
+function uploadAjax(){
+    
      let dato_archivo = $('#picture').prop("files")[0];
 
      let datosForm = new FormData();
