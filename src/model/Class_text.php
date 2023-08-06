@@ -56,6 +56,9 @@
             $myConnect->close_connect();
 
         }
+        /**
+         * borra el texto indicado en el cuadro de texto de procesador.php usando e titulo y el id asociado a la sesion de usuario activa
+        */
         public function deleteText(){
            try{
             $myConnect = new MyConnection();

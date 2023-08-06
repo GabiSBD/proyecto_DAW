@@ -60,6 +60,9 @@ Class Picture{
         $myConnect->close_connect();
 
     }
+    /**
+     * se utiliza para borrar la imagen selecionada en galery.php teniendo como referencia el nombre de la imagen y el id asociado al usuario en uso
+     */
     public function deletePicture(){
        try{
         $myConnect = new MyConnection();
@@ -78,7 +81,9 @@ Class Picture{
        $resultSet->closeCursor();
        $myConnect->close_connect();
     }
-
+/**
+ * dibuja las imagenes persistidas en BBDD en una tabla que se insertara en el espacio reservado a ostrar las imagenes en la vista.
+*/ 
     public static function getPictures($id_user){
         try{
             $myConnect = new MyConnection();
@@ -90,6 +95,7 @@ Class Picture{
             $resultSet->execute(array(":id"=>$id_user));
 
             if($resultSet->rowCount()>0){
+                //esta variable lautilizamos para que cada tres imagenes dispuestas en un tr se cierre esa fila y se inicie una nueva adecuando la anchora de la tabla
                 $cont=0;
                 echo "<table><tr>";
                 
@@ -138,6 +144,10 @@ Class Picture{
         $resultSet->closeCursor();
         $myConnect->close_connect();
     }
+    /**
+    * obtiene la imagen requerida de la BBDD buscando por el titulo y el id del usuario asociados. se utiliza en los controladores
+    *de download_pic
+    */
     public  function getPicture(){
 
        try{

@@ -1,6 +1,8 @@
 <?php  
 require("Connection_Const.php");
-
+/**
+ * clase que se encargara de proporcionar objetos de conexion a la BBDD mediante su instanciacion y uso del método getconnect()
+ */
 class MyConnection{
     protected $db_connection;
 

@@ -12,7 +12,7 @@
     $path= "../assets/".$id.$extension; 
     $file = fopen($path, "w");
 
-    
+    //escribimos en el fichero el texto recuperado de la BBDD y aseguramos que su codificación sea utf-8
 
     fwrite($file,mb_convert_encoding($myTxt->getFile(), "UTF-8"));
 

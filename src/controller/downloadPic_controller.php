@@ -17,7 +17,8 @@
 
     $path= "../assets/".$id.$extension; 
     $file = fopen($path, "w");
-
+    
+    //guardamos la imagen capturada en el fichero en funcion de su extensión
     switch($extension){
         case ".jpeg"||".jpg"||".pjpeg":
             imagejpeg($pic, $file);
