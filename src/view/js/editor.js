@@ -7,7 +7,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
 */
-
+/*
+Personal change made in line 741. I changed the fontawsome icon because I couldn't access the previous one by default
+*/
 (function( $ ){
 	var editorObj;
 	var methods = {
@@ -736,7 +738,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 						   'insert_img'	: { "modal": true,
 						   					"modalId": "InsertImage_" + $(this).attr("id"), 
-											"icon":"fa fa-picture-o", 
+											"icon":"fa-regular fa-image", //cambio icono obsoleto
 											"tooltip": "Insert Image", 
 											"modalHeader": "Insert Image",
 											"modalBody": methods.imageWidget.apply(this),
