@@ -93,7 +93,8 @@ $(function(){
         
       }
     function deleteAjax(){
-  
+        let title =$("#title").val();
+
         if(title==null ||title==""||title==" "){
           $("#ajaxMsg").attr("class","alert alert-danger").html("The file title cannot be blank.");
             return false;
