@@ -67,7 +67,7 @@ $(function(){
         let title =$("#title").val();
 
         if(title==null ||title==""||title==" "){
-          $("#ajaxMsg").attr("class","text-danger").html("The file title cannot be blank.");
+          $("#ajaxMsg").attr("class","alert alert-danger").html("The file title cannot be blank.");
           return false;
         }
 
@@ -95,7 +95,7 @@ $(function(){
     function deleteAjax(){
   
         if(title==null ||title==""||title==" "){
-            $("#ajaxMsg").attr("class","text-danger").html("The file title cannot be blank.");
+          $("#ajaxMsg").attr("class","alert alert-danger").html("The file title cannot be blank.");
             return false;
          }
 
@@ -113,7 +113,7 @@ $(function(){
 
     //coloca un mensaje de respuesta del servidor al guardar texto
   function responseSaveText(data){
-      data=="success"? $("#ajaxMsg").attr("class","text-success").html("saved successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to save");
+    data=="success"? $("#ajaxMsg").attr("class","alert alert-success").html("saved successfully") : $("#ajaxMsg").attr("class","alert alert-danger").html("failed to save");
   }
   //escribe el texto recuperado del la bbdd en el editor
   function write(data){
@@ -121,6 +121,6 @@ $(function(){
   }
   //coloca un mensaje de respuesta del servidor al borrar un texto
   function responseDeleteText(data){
-    data == "success" ? $("#ajaxMsg").attr("class","text-success").html("delete successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to delete");
+    data == "success" ? $("#ajaxMsg").attr("class","alert alert-success").html("delete successfully") : $("#ajaxMsg").attr("class","alert alert-danger").html("failed to delete");
   }
   //---------------------------------------------------------------------------------------------------------------------------------------------------------

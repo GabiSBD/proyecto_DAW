@@ -60,7 +60,7 @@
                       <div class='checkbox'>
                         <label class='nav-font'>
                           <input class='btn btn-danger' type='submit' value='Delete User'>";
-                          if(isset($_GET["error"])) echo "<p class='text-danger nav-font'>".$_GET["error"]."</p>";
+                          if(isset($_GET["error"])) echo "<p class='alert alert-danger nav-font'>".$_GET["error"]."</p>";
                        echo " </label>
                       </div>
                     </form>
@@ -86,8 +86,8 @@
                       </div>
                       <div style='text-align:center;'>
                           <label for='password' class='nav-font'>Password</label>
-                          <input type='password' name='password' id='password'>
-                          <p class='text-danger nav-font'>";if(isset($_GET["error"]))echo $_GET["error"]."</p>";
+                          <input type='password' name='password' id='password'>";
+                          if(isset($_GET["error"])) echo "<p class='alert alert-danger nav-font'>".$_GET["error"]."</p>";
                      echo "</div>
                       <div class='checkbox input-group'>
                           <span class='nav-font input-group-addon'>

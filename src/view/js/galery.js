@@ -63,13 +63,12 @@ function responsePaintGalery(data){
     $("#album").html(data);
 }
 function uploadResponse(data){
-    if(data=="success") $("#ajaxMsg").attr("class","text-success").html("saved successfully");
-    else if(data == "notValid") $("#ajaxMsg").attr("class","text-danger").html("failed to save, invalid file format");
-    else $("#ajaxMsg").attr("class","text-danger").html("failed to save");
+    if(data=="success") $("#ajaxMsg").attr("class","alert alert-success").html("saved successfully");
+    else if(data == "notValid") $("#ajaxMsg").attr("class","alert alert-danger").html("failed to save, invalid file format");
+    else $("#ajaxMsg").attr("class","alert alert-danger").html("failed to save");
     getPictures();
 }
 function deleteResponse(data){
-    data == "success" ? $("#ajaxMsg").attr("class","text-success").html("delete successfully") : $("#ajaxMsg").attr("class","text-danger").html("failed to delete");
+    data == "success" ? $("#ajaxMsg").attr("class","alert alert-success").html("delete successfully") : $("#ajaxMsg").attr("class","alert alert-danger").html("failed to delete");
     getPictures();
 }
-   

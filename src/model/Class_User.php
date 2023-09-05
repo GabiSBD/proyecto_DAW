@@ -55,7 +55,7 @@
             }else{
                //devolvemos por url un mensaje de error que servira para mostrar un mensaje en el form de index.php
                 
-                header("location:../view/index.php?error=The+data+does+not+correspond+to+any+user.");
+               header("location:../view/index.php?error=sorry,+username+or+password+not+correspond+to+any+user.");
                 
             }
         }
