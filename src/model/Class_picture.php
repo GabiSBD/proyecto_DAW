@@ -28,17 +28,17 @@ Class Picture{
         $isExist = $resultSet->rowCount() > 0 ? true : false;
 
         $resultSet->closeCursor();
-        $this->myConnect->close_connect();
+        
 
         return $isExist;
     }
     //guarda o modifica un texto persistido en la bbdd
     public function savePicture(){
         try{
-            $mycon = new MyConnection();
-            $conn = $mycon->get_connect();
+            
+            $conn = $this->myConnect->get_connect();
 
-            $this->isExist() ? $resultSet = $conn->prepare("update pictures set picture= :picture and type= :type where id_user= :user and title= :title;") :
+            $this->isExist() ? $resultSet = $conn->prepare("update pictures set picture= :picture, type= :type where id_user= :user and title= :title;") :
                                 $resultSet = $conn->prepare("insert into pictures (id_user,title,picture,type) values (:user, :title, :picture, :type);");             
                 
 
@@ -50,13 +50,13 @@ Class Picture{
 
         }catch(PDOException $e){
             echo "fail";
-            
+            $this->myConnect->close_connect();
         }
 
 
         
         $resultSet->closeCursor();
-        $mycon->close_connect();
+        $this->myConnect->close_connect();
 
     }
     /**
@@ -169,7 +169,7 @@ Class Picture{
 
        }catch(PDOException $e){
         echo "<h1>Upps, something is wrong with server, try later</h1>";
-        
+        $this->myConnect->close_connect();
        }
        $resultSet->closeCursor();
        $this->myConnect->close_connect();
