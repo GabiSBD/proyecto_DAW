@@ -6,19 +6,20 @@ Class Picture{
     private $picture;
 
     private $id_user;
+    private $myConnect;
 
     public function __construct($title,$type, $picture, $id_user){
         $this->title = $title;
         $this->type = $type;
         $this->picture = $picture;
         $this->id_user = $id_user;
+        $this->myConnect = new MyConnection();
     }
 
     // verifica si una imagen ya existe en la bbdd  devolviendo un booleano
     private function isExist(){
-        $myConnect = new MyConnection();
 
-        $conn = $myConnect->get_connect();
+        $conn = $this->myConnect->get_connect();
 
         $resultSet = $conn->prepare("select id from pictures where id_user= :id and title= :title;");
         $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
@@ -27,17 +28,15 @@ Class Picture{
         $isExist = $resultSet->rowCount() > 0 ? true : false;
 
         $resultSet->closeCursor();
-        $myConnect->close_connect();
+        $this->myConnect->close_connect();
 
         return $isExist;
     }
     //guarda o modifica un texto persistido en la bbdd
     public function savePicture(){
         try{
-            
-            $myConnect = new MyConnection();
-
-            $conn = $myConnect->get_connect();
+            $mycon = new MyConnection();
+            $conn = $mycon->get_connect();
 
             $this->isExist() ? $resultSet = $conn->prepare("update pictures set picture= :picture and type= :type where id_user= :user and title= :title;") :
                                 $resultSet = $conn->prepare("insert into pictures (id_user,title,picture,type) values (:user, :title, :picture, :type);");             
@@ -47,17 +46,17 @@ Class Picture{
 
             
             if($resultSet) echo "success";
-             else echo "fail";
+            else echo "fail";
 
         }catch(PDOException $e){
             echo "fail";
-
+            
         }
 
 
         
         $resultSet->closeCursor();
-        $myConnect->close_connect();
+        $mycon->close_connect();
 
     }
     /**
@@ -65,9 +64,8 @@ Class Picture{
      */
     public function deletePicture(){
        try{
-        $myConnect = new MyConnection();
 
-        $conn = $myConnect->get_connect();
+        $conn = $this->myConnect->get_connect();
 
         $resultSet = $conn->prepare("delete from pictures where id_user= :id and title= :title ;");
         $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
@@ -79,7 +77,7 @@ Class Picture{
        }
 
        $resultSet->closeCursor();
-       $myConnect->close_connect();
+       $this->myConnect->close_connect();
     }
 /**
  * dibuja las imagenes persistidas en BBDD en una tabla que se insertara en el espacio reservado a ostrar las imagenes en la vista.
@@ -151,9 +149,8 @@ Class Picture{
     public  function getPicture(){
 
        try{
-        $myConnect = new MyConnection();
 
-        $conn = $myConnect->get_connect();
+        $conn = $this->myConnect->get_connect();
 
         if($this->isExist()){
             $resultSet = $conn->prepare("select picture from pictures where id_user = :id and title= :title ;");
@@ -172,9 +169,10 @@ Class Picture{
 
        }catch(PDOException $e){
         echo "<h1>Upps, something is wrong with server, try later</h1>";
+        
        }
        $resultSet->closeCursor();
-       $myConnect->close_connect();
+       $this->myConnect->close_connect();
 
     }
     

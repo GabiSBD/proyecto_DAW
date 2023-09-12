@@ -3,20 +3,22 @@
     class User{
         private $name;
         private $passwrd;
+        private $myConnect;
 
         
 
         public function __construct($name,$passwrd){
             $this->name = $name;
             $this->passwrd = $passwrd;
+            $this->myConnect = new MyConnection();
         }
 
         //comprueba la existencia de un usuario con los datos dados en el constructor
         public function isUser(){
             //comprueba si existe un usuario en la bbdd
 
-            $myConnection = new MyConnection();
-            $conn = $myConnection->get_connect();
+            
+            $conn = $this->myConnect->get_connect();
             
             $resultSet = $conn->prepare("select name from users where name = :name;");
 
@@ -26,7 +28,7 @@
 
             $resultSet->closeCursor();
 
-            $myConnection->close_connect();
+            //$this->myConnect->close_connect();
 
             return $isUser;
         }
@@ -35,8 +37,8 @@
         public function getUser(){
 
             if($this->isUser()){
-                $myConnection = new MyConnection();
-                $conn = $myConnection->get_connect();
+               // $Conection = new MyConnection();
+                $conn = $this->myConnect->get_connect();
                 $resultSet = $conn->prepare("select id, name, isAdmin from users where name = :name and passwrd=AES_ENCRYPT(:pass,'key');");
                 $resultSet->execute(array(":name"=>$this->name,":pass"=>$this->passwrd));
 
@@ -48,23 +50,23 @@
                 }
                 $resultSet->closeCursor();
 
-                $myConnection->close_connect();
-
+                //$Conection->close_connect();
+                $this->myConnect->close_connect();
                 header("location:../view/index.php");
 
             }else{
                //devolvemos por url un mensaje de error que servira para mostrar un mensaje en el form de index.php
                 
                header("location:../view/index.php?error=sorry,+username+or+password+not+correspond+to+any+user.");
-                
+               $this->myConnect->close_connect(); 
             }
         }
         
         //ñade un usuario a la BBDD
         public function setUser(){
             if(!$this->isUser()){
-                $myConnection = new MyConnection();
-                $conn = $myConnection->get_connect();
+                
+                $conn = $this->myConnect->get_connect();
 
                 // persistimos el usuario nuevo
                 $resultSet = $conn->prepare("insert into users (name,passwrd) values (:name, AES_ENCRYPT(:pass,'key'));");
@@ -80,7 +82,7 @@
                 }
 
                 $resultSet->closeCursor();
-                $myConnection->close_connect();
+                $this->myConnect->close_connect();
 
             }else{
                 header("location:../view/index.php?error=el+usuario+ya+existe");
@@ -120,9 +122,8 @@
         public function deleteUser(){
             //borrara un usuario pero primero borrar los textos e imagenes  asociados a su id
             try{
-                $MyConnection = new MyConnection();
             
-                $conn = $MyConnection->get_connect();
+                $conn = $this->myConnect->get_connect();
 
            
 
@@ -160,13 +161,13 @@
                 $deleteTexts->closeCursor();
                 $deletePics->closeCursor();
                 $deleteUser->closeCursor();
-                $MyConnection->close_connect();
+                $this->myConnect->close_connect();
                 header("location:../view/index.php");
             }catch(PDOException $e){
                 
                 $deleteTexts->closeCursor();
                 $deleteUser->closeCursor();
-                $MyConnection->close_connect();
+                $this->myConnect->close_connect();
                 header("location:../view/index.php?error=Error,+contacte+con+servicio+tecnico");
             
             }
@@ -206,32 +207,6 @@
 
 
         }
-       /* //regula el indice del autoincremento del id de la tabla users
-       private static function setAutoIncrement(){
-            $Connection = new MyConnection();
-            $conn = $Connection->get_connect();
-
-            $auto_idUser = $conn->query("select MAX(id) from users");
-            $auto_idTxt = $conn->query("select MAX(id) from texts");
-            $auto_idPic = $conn->query("select MAX(id) from pictures");
-
-            while($rowTxt =$auto_idTxt->fetch()){
-                $conn->exec("alter table texts AUTO_INCREMENT=".$rowTxt[0].";");
-            }
-            while($rowUser = $auto_idUser->fetch()){
-                $conn->exec("alter table users AUTO_INCREMENT=".$rowUser[0].";");
-            }
-            while($rowPic = $auto_idUser->fetch()){
-                $conn->exec("alter table pictures AUTO_INCREMENT=".$rowPic[0].";");
-            }
-
-            $auto_idTxt->closeCursor();
-            $auto_idPic->closeCursor();
-            $auto_idUser->closeCursor();
-            $Connection->close_connect();
-            return true;
-
-        }*/
 
         //dibuja la tabla de control del area de administrador
         public static function adminTable(){

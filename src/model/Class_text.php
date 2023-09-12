@@ -5,18 +5,19 @@
         private $text;
 
         private $id_user;
+        private $myConnect;
 
         public function __construct($title, $text, $id_user){
             $this->title = $title;
             $this->text = $text;
             $this->id_user = $id_user;
+            $this->myConnect = new MyConnection();
         }
 
         // verifica si un texto ya existe en la bbdd  devolviendo un booleano
         private function isExist(){
-            $myConnect = new MyConnection();
 
-            $conn = $myConnect->get_connect();
+            $conn = $this->myConnect->get_connect();
 
             $resultSet = $conn->prepare("select id from texts where id_user= :id and title= :title;");
             $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
@@ -25,7 +26,7 @@
             $isExist = $resultSet->rowCount() > 0 ? true : false;
 
             $resultSet->closeCursor();
-            $myConnect->close_connect();
+            
 
             return $isExist;
         }
@@ -33,9 +34,8 @@
         //guarda o modifica un texto persistido en la bbdd
         public function saveText(){
             try{
-                $myConnect = new MyConnection();
 
-                $conn = $myConnect->get_connect();
+                $conn = $this->myConnect->get_connect();
 
                 $this->isExist() ? $resultSet = $conn->prepare("update texts set text= :text where id_user= :user and title= :title;") :
                                     $resultSet = $conn->prepare("insert into texts (id_user,title,text) values (:user, :title, :text);");             
@@ -48,12 +48,12 @@
 
             }catch(PDOException $e){
                 echo "fail";
-
+                $this->myConnect->close_connect();
             }
 
             
             $resultSet->closeCursor();
-            $myConnect->close_connect();
+            $this->myConnect->close_connect();
 
         }
         /**
@@ -61,9 +61,8 @@
         */
         public function deleteText(){
            try{
-            $myConnect = new MyConnection();
 
-            $conn = $myConnect->get_connect();
+            $conn = $this->myConnect->get_connect();
 
             $resultSet = $conn->prepare("delete from texts where id_user= :id and title= :title ;");
             $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
@@ -75,7 +74,7 @@
            }
 
            $resultSet->closeCursor();
-           $myConnect->close_connect();
+           $this->myConnect->close_connect();
         }
 
         //configura el menu desplegable del historial de procesador.php
@@ -105,9 +104,7 @@
         //obtiene un texto persistido en la bbdd y lo escribe donde es devuelto
         public function getText(){
             try{
-                $myConnect = new MyConnection();
-
-                $conn = $myConnect->get_connect();
+                $conn = $this->myConnect->get_connect();
 
                 $resultSet = $conn->prepare("select text from texts where id_user = :id and title=:title ;");
 
@@ -132,15 +129,14 @@
 
             
             $resultSet->closeCursor();
-            $myConnect->close_connect();
+            $this->myConnect->close_connect();
         }
 
         //devuelve el texto persistido en BBDD
         public function getFile(){
             try{
-                $myConnect = new MyConnection();
 
-                $conn = $myConnect->get_connect();
+                $conn = $this->myConnect->get_connect();
 
                 $resultSet = $conn->prepare("select text from texts where id_user = :id and title=:title ;");
 
@@ -165,7 +161,7 @@
 
             
             $resultSet->closeCursor();
-            $myConnect->close_connect();
+            $this->myConnect->close_connect();
         }
 
     }
