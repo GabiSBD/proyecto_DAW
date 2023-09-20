@@ -25,7 +25,7 @@
     ?>
     <!--JS-->
     <script src="js/procesador.js"></script>
-    <title>free text</title>
+    <title>DgToolbox</title>
 </head>
 <body>
 <!-----------------------------------------------Barra navegacion------------------------------------------------------>
@@ -33,8 +33,8 @@
         <div class="container">
           <div class="navbar-header " id="logo">
             <span class="navbar-brand">
-                <i class="fa-solid fa-feather"></i>
-                <label class="nav-font">Free Office</label>
+            <i class="fa-solid fa-toolbox"></i>
+                <label class="nav-font">DgToolbox</label>
             </span>
           </div>
           <?php
