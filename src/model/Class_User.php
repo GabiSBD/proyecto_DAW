@@ -37,7 +37,7 @@
         public function getUser(){
 
             if($this->isUser()){
-               // $Conection = new MyConnection();
+               
                 $conn = $this->myConnect->get_connect();
                 $resultSet = $conn->prepare("select id, name, isAdmin from users where name = :name and passwrd=AES_ENCRYPT(:pass,'key');");
                 $resultSet->execute(array(":name"=>$this->name,":pass"=>$this->passwrd));
@@ -62,7 +62,7 @@
             }
         }
         
-        //ñade un usuario a la BBDD
+        //añade un usuario a la BBDD
         public function setUser(){
             if(!$this->isUser()){
                 

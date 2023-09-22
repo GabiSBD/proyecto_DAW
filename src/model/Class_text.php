@@ -37,8 +37,8 @@
 
                 $conn = $this->myConnect->get_connect();
 
-                $this->isExist() ? $resultSet = $conn->prepare("update texts set text= :text where id_user= :user and title= :title;") :
-                                    $resultSet = $conn->prepare("insert into texts (id_user,title,text) values (:user, :title, :text);");             
+                $this->isExist() ? $resultSet = $conn->prepare("update texts set text= AES_ENCRYPT(:text, 'txtKey') where id_user= :user and title= :title;") :
+                                    $resultSet = $conn->prepare("insert into texts (id_user,title,text) values (:user, :title, AES_ENCRYPT(:text, 'txtKey'));");             
                     
 
                 $resultSet->execute(array(":user"=>$this->id_user, ":title"=>$this->title, ":text"=>$this->text));               
@@ -106,7 +106,7 @@
             try{
                 $conn = $this->myConnect->get_connect();
 
-                $resultSet = $conn->prepare("select text from texts where id_user = :id and title=:title ;");
+                $resultSet = $conn->prepare("select AES_DECRYPT(text,'txtKey') as text from texts where id_user = :id and title=:title ;");
 
                 $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
 
@@ -138,7 +138,7 @@
 
                 $conn = $this->myConnect->get_connect();
 
-                $resultSet = $conn->prepare("select text from texts where id_user = :id and title=:title ;");
+                $resultSet = $conn->prepare("select AES_DECRYPT(text,'txtKey') as text from texts where id_user = :id and title=:title ;");
 
                 $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
 
