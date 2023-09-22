@@ -38,8 +38,8 @@ Class Picture{
             
             $conn = $this->myConnect->get_connect();
 
-            $this->isExist() ? $resultSet = $conn->prepare("update pictures set picture= :picture, type= :type where id_user= :user and title= :title;") :
-                                $resultSet = $conn->prepare("insert into pictures (id_user,title,picture,type) values (:user, :title, :picture, :type);");             
+            $this->isExist() ? $resultSet = $conn->prepare("update pictures set picture= AES_ENCRYPT(:picture,'picKey'), type= :type where id_user= :user and title= :title;") :
+                                $resultSet = $conn->prepare("insert into pictures (id_user,title,picture,type) values (:user, :title, AES_ENCRYPT(:picture,'picKey'), :type);");             
                 
 
             $resultSet->execute(array(":user"=>$this->id_user, ":title"=>$this->title, ":picture"=>$this->picture, ":type"=>$this->type));               
@@ -88,7 +88,7 @@ Class Picture{
 
             $conn = $myConnect->get_connect();
 
-            $resultSet = $conn->prepare("select title, picture from pictures where id_user = :id ;");
+            $resultSet = $conn->prepare("select title, AES_DECRYPT(picture,'picKey') as picture from pictures where id_user = :id ;");
 
             $resultSet->execute(array(":id"=>$id_user));
 
@@ -153,7 +153,7 @@ Class Picture{
         $conn = $this->myConnect->get_connect();
 
         if($this->isExist()){
-            $resultSet = $conn->prepare("select picture from pictures where id_user = :id and title= :title ;");
+            $resultSet = $conn->prepare("select AES_DECRYPT(picture,'picKey') as picture from pictures where id_user = :id and title= :title ;");
 
             $resultSet->execute(array(":id"=>$this->id_user, ":title"=>$this->title));
 
