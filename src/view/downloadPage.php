@@ -18,28 +18,39 @@
 
     <title>Download link page</title>
     <?php
+        session_start();
         
        if(isset($_GET["title"])){
         require("../controller/downloadPic_controller.php");
 
         //separamos el nombre del archivo pasado en title de su extension;
         $title = $_GET["title"];
-        $id_user = $_SESSION["usuario"]["id"];
+        $id = $_SESSION["usuario"]["id"];
         $extension =strtolower(".".pathinfo($title, PATHINFO_EXTENSION));
        }
-       if(isset($_GET["txtTitle"])){
+       else if(isset($_GET["txtTitle"]) && isset($_SESSION["usuario"])){
         require("../controller/downloadTxt_controller.php");
 
         //definimos el nombre y extension donde debe recuperar el texto a descargar previamente guardado en assets
-        $id_user = $_SESSION["usuario"]["id"];
+        $id = $_SESSION["usuario"]["id"];
+        $extension =".odt";
+       }
+       else if(isset($_GET["txtTitle"]) && $_GET["text"] && !isset($_SESSION["usuario"])){
+        require("../controller/downloadTxt_controller.php");
+        
+        $id=$_COOKIE["uid"];
+        $title = $_GET["txtTitle"];
         $extension =".odt";
        }
     ?>
 </head>
 <body>
+    
     <div class="container">
         <div class="col-md-12 downloadLink">
-            <a download href='../assets/<?php echo $id_user.$extension;?>'><button class="btn btn-info rounded-pill shadow">CLICK TO DOWNLOAD</button></a>
+            <a download href='<?php if(isset($_SESSION["usuario"]))echo "../assets/".$id.$extension; else echo "../assets/".$id.$title.$extension?>'>
+                <button class="btn btn-info rounded-pill shadow">CLICK TO DOWNLOAD</button>
+            </a>
         </div>
     </div>
     
