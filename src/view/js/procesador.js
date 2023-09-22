@@ -1,6 +1,6 @@
 $(function(){
      //coloca el editor de texto
-     $("#userText").Editor();
+    let editor = $("#userText").Editor();
 
      /* 
      arreglo necesario para que el DOM se cargara corectamente usando ajax con jquery ya que no cargaba bien los eventos despues de usar una funcion ajax
@@ -42,6 +42,11 @@ $(function(){
   //------------------------------------------------------------------------------------------------------------
         //funcion para colocar un link a downloadPage.php
         document.getElementById("textList").addEventListener("change",setLink, false);
+
+        if($("#isSetSession").val()=="false"){
+          $("#editor").on("keydown", setGuestLink);
+          
+        }
         //animacion en link a downloadPage
         document.getElementById("iconDload").addEventListener("mouseover",function(){
           $("#downloadButton").addClass("fa-bounce");
@@ -49,20 +54,31 @@ $(function(){
         document.getElementById("iconDload").addEventListener("mouseout",function(){
           $("#downloadButton").removeClass("fa-bounce");
         },false);
+
   
     });
-
+    
     function setLink(){
+
+        $("#downloadLink").html(
+          "<a href='downloadPage.php?txtTitle="+$("#textList").val()+"' target='_blank'>"+
+            "<button class='btn btn-primary rounded-pill shadow' id='downloadButton'><i id='iconDload' class='fa-solid fa-download fa-lg'></i></button>"+
+          "</a>"
+        );
+     
+      }
+    function setGuestLink(){
       $("#downloadLink").html(
-        "<a href='downloadPage.php?txtTitle="+$("#textList").val()+"' target='_blank'>"+
+        "<a href='downloadPage.php?txtTitle=GuestDoc"+"&text="+$("#userText").Editor("getText")+"' target='_blank'>"+
           "<button class='btn btn-primary rounded-pill shadow' id='downloadButton'><i id='iconDload' class='fa-solid fa-download fa-lg'></i></button>"+
-        "</a>"
-      );
+        "</a>");
     }
+
+});
    
     //--------------------------------------------------------------funciones AJAX------------------------------------------------------------
 
-  });
+  
     function saveAjax(){
         let title =$("#title").val();
 

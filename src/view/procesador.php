@@ -86,7 +86,7 @@
 <!-----------------------------------------------contenedor del editor------------------------------------------------------>
     <div class="container">
                   
-      <div class="col-md-8">
+      <div class="col-md-8" id="editor">
           <textarea name="userText" id="userText"></textarea>
       </div>
       <div class="col-md-4 options-app">
@@ -110,6 +110,7 @@
               ?>
             </select>
             <div id="downloadLink"></div>
+            <input type="hidden" id="isSetSession" value=<?php if(isset($_SESSION["usuario"]))echo "true"; else echo "false";?>>
           <div>    
 
     </div>
