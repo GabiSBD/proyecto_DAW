@@ -50,7 +50,7 @@
                     <form action='../controller/logOut_controller.php' method='POST'>
                       <div class='checkbox'>
                           <label class='nav-font'>
-                          <input class='btn btn-info' type='submit' value='Log Out'>
+                          <button class='nav-font btn btn-info' id='submit'><i class='fa-solid fa-right-from-bracket' style='color: #ffffff;'></i></button>
                           </label>
                       </div>
                     </form>
@@ -59,7 +59,7 @@
                     <form action='../controller/deleteUser_controller.php' method='POST'>
                       <div class='checkbox'>
                         <label class='nav-font'>
-                          <input class='btn btn-danger' type='submit' value='Delete User'>";
+                        <button class='nav-font btn btn-danger' id='submit'><i class='fa-solid fa-user-xmark' style='color: #ffffff;'></i></button>";
                           if(isset($_GET["error"])) echo "<p class='alert alert-danger nav-font'>".$_GET["error"]."</p>";
                        echo " </label>
                       </div>

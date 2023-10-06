@@ -13,6 +13,9 @@ $(function(){
         document.getElementById("logo").addEventListener("click",function(){
             window.location = "index.php";
         },false);
+
+        document.getElementById("submit").addEventListener("click",submit,false);
+
   
         //cuando el raton se pose sobre el boton delete hara una animacion y dejara de hacerla al salir el focus del ratón
         document.getElementById("delete").addEventListener("mouseover", function(){
@@ -57,6 +60,8 @@ $(function(){
 
   
     });
+    
+    function submit(){$("#formIndex").submit();}
     
     function setLink(){
 
