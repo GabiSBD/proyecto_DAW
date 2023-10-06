@@ -79,7 +79,7 @@
                 </a>
                 <ul class='dropdown-menu'>
                   <li>
-                    <form action='../controller/login_controller.php' method='POST'>
+                    <form id='formIndex' action='../controller/login_controller.php' method='POST'>
                       <div style='text-align:center;'>
                           <label for='username' class='nav-font'>UserName</label>
                           <input type='text' id='username' name='username' placeholder='User' required>
@@ -95,8 +95,8 @@
                           </span>
                       </div>
                       <div style='text-align:center;'>
-                      <input class='nav-font btn btn-info' type='submit' name='submit' value='Send'>
-                      <input class='nav-font btn btn-danger' type='reset' name='clear' value='Reset'>
+                      <button class='nav-font btn btn-info' id='submit'><i class='fa-solid fa-arrow-right-to-bracket' style='color: #ffffff;'></i></button>
+                      <button class='nav-font btn btn-danger' id='reset'><i class='fa-solid fa-eraser' style='color: #ffffff;'></i></button>
                       </div>
                     </form>
                   </li>

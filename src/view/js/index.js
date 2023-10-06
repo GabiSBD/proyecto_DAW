@@ -4,6 +4,8 @@ $(function(){
         $("#logo").click(toIndex);
         $("#galery").click(toGalery);
         $("#adminArea").click(toAdminArea);
+        $("#submit").click(login)
+        $("#reset").click(clear)
         
       
     
@@ -12,3 +14,8 @@ $(function(){
   function toIndex(){ window.location = "index.php"; }
   function toGalery(){ window.location = "galery.php"; }
   function toAdminArea(){ window.location = "adminArea.php"; }
+  function login(){$("#formIndex").submit();}
+  function clear(){ 
+      $("#username").val("");
+      $("#password").val("");
+  }
