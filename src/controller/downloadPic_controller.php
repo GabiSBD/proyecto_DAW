@@ -1,7 +1,6 @@
 <?php
     require("../model/Class_picture.php");
 
-    session_start();
 
     $title = $_GET["title"];
     $id = $_SESSION["usuario"]["id"];

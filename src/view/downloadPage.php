@@ -28,7 +28,8 @@
         $id = $_SESSION["usuario"]["id"];
         $extension =strtolower(".".pathinfo($title, PATHINFO_EXTENSION));
        }
-       else if(isset($_GET["txtTitle"]) && isset($_SESSION["usuario"])){
+
+        if(isset($_GET["txtTitle"]) && isset($_SESSION["usuario"])){
         require("../controller/downloadTxt_controller.php");
 
         //definimos el nombre y extension donde debe recuperar el texto a descargar previamente guardado en assets

@@ -55,7 +55,7 @@ function uploadAjax(){
         success: uploadResponse
     });
 
-    return false;
+   
 }
 
 //-------------------------------Respuestas AJAX------------------------------------------------
