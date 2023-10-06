@@ -112,12 +112,10 @@
 
     <div class="container container-btn">
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="typeWriter">TypeWriter</button>
-            <br><br>
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="galery">Galery</button>
-          </div>
+          <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="typeWriter">TypeWriter</button>
+        </div>
         <div class="col-md-6 col-btn">
-            <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="calculator">Calculator</button>
+          <button class="btn btn-primary rounded-pill shadow btn-freeOffice" id="galery">Galery</button>
         </div>
         <div class="col-md-12 col-btn">
             <?php
