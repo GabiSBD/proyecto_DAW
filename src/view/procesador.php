@@ -55,20 +55,21 @@
                           </label>
                       </div>
                     </form>
-                  </li>
-                  <li>
-                    <form action='../controller/deleteUser_controller.php' method='POST'>
-                      <div class='checkbox'>
-                        <label class='nav-font'>
-                          <input class='btn btn-danger' type='submit' value='Delete User'>";
-                          if(isset($_GET["error"])) echo "<p class='alert alert-danger nav-font'>".$_GET["error"]."</p>";
-                       echo " </label>
-                      </div>
-                    </form>
-                  </li>
-                </ul>
-              </li>
-            </ul>";
+                  </li>";
+                  if($_SESSION["usuario"]["isAdmin"] == 0){
+                    echo "<li>
+                      <form action='../controller/deleteUser_controller.php' method='POST'>
+                        <div class='checkbox'>
+                          <label class='nav-font'>
+                            <input class='btn btn-danger' type='submit' value='Delete User'>";
+                            if(isset($_GET["error"])) echo "<p class='alert alert-danger nav-font'>".$_GET["error"]."</p>";
+                         echo " </label>
+                        </div>
+                      </form>
+                    </li>";}
+                  echo "</ul>
+                </li>
+              </ul>";
            
               
             }else{
