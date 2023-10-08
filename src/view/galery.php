@@ -52,21 +52,21 @@
                           </label>
                       </div>
                     </form>
-                  </li>
-                  <li>
+                  </li>";
+                  if($_SESSION["usuario"]["isAdmin"]== 0){ 
+                    echo "<li>
                     <form action='../controller/deleteUser_controller.php' method='POST'>
                       <div class='checkbox'>
                         <label class='nav-font'>
                         <button class='nav-font btn btn-danger' id='submit'><i class='fa-solid fa-user-xmark' style='color: #ffffff;'></i></button>";
-                          if(isset($_GET["error"])) echo "<p class='alert alert-danger nav-font'>".$_GET["error"]."</p>";
-                       echo " </label>
+                          if(isset($_GET["error"])) echo "<p class='alert alert-danger nav-font'>".$_GET["error"]."</p>
+                        </label>
                       </div>
                     </form>
-                  </li>
-                </ul>
+                  </li>";}
+                echo "</ul>
               </li>
             </ul>";
-           
            
               
             }else{

@@ -10,11 +10,15 @@ $(function(){
       for(let i=0; i<isAdminBtn.length;i++) isAdminBtn[i].addEventListener("click",changeAdmin,false);
 
       document.getElementById("logo").addEventListener("click",toIndex,false);
+
+      document.getElementById("submit").addEventListener("click",submit,false);
+
     });
     
 
   });
   function toIndex(){ window.location = "index.php"; }
+  function submit(){$("#formIndex").submit();}
 //----------------------funciones AJAX------------------------------------------------
   function adminTable(){
     $.post("../controller/adminTable.php",drawTable);

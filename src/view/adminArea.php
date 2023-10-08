@@ -47,7 +47,7 @@
                     <form action='../controller/logOut_controller.php' method='POST'>
                       <div class='checkbox'>
                           <label class='nav-font'>
-                            <input class='btn btn-info' type='submit' value='Log Out'>
+                          <button class='nav-font btn btn-info' id='submit'><i class='fa-solid fa-right-from-bracket' style='color: #ffffff;'></i></button>
                           </label>
                       </div>
                     </form>
