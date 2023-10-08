@@ -14,7 +14,7 @@ $(function(){
             window.location = "index.php";
         },false);
 
-        document.getElementById("submit").addEventListener("click",submit,false);
+       $("#submit").click(submit);
 
   
         //cuando el raton se pose sobre el boton delete hara una animacion y dejara de hacerla al salir el focus del ratón
