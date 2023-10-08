@@ -1,4 +1,8 @@
 $(function(){
+
+    window.addEventListener("load",getHistory,false);
+    
+
      //coloca el editor de texto
     let editor = $("#userText").Editor();
 
@@ -9,6 +13,10 @@ $(function(){
      autor:Jason Fingar.
      */
     $("body").on("mouseover",function(){
+
+        document.getElementById("save").addEventListener("mouseup",getHistory,false);
+        document.getElementById("delete").addEventListener("mouseup",getHistory,false);
+
         //devuelve a la pagina pricipal al pulsar en el logo
         document.getElementById("logo").addEventListener("click",function(){
             window.location = "index.php";
@@ -32,13 +40,13 @@ $(function(){
         }, false);
   //--------------------------------------------------------------------------------------------------------
         //funcion para conexion ajax al guardar texto
-        document.getElementById("save").addEventListener("click",saveAjax,false);
+        document.getElementById("save").addEventListener("mousedown",saveAjax,false);
 
         //funcion ajax para traer texto de vuelta al editor
         document.getElementById("textList").addEventListener("change",historyAjax,false);
   
         // funcion ajax para borrar un texto del la bbdd
-        document.getElementById("delete").addEventListener("click",deleteAjax , false);
+        document.getElementById("delete").addEventListener("mousedown",deleteAjax , false);
   //------------------------------------------------------------------------------------------------------------
         //funcion para colocar un link a downloadPage.php
         document.getElementById("textList").addEventListener("change",setLink, false);
@@ -95,6 +103,9 @@ $(function(){
         $.post("../controller/saveText_controller.php", formData, responseSaveText);
 
     }
+    function getHistory(){
+      $.post("../controller/history.php",responseGethistory);
+    }
     function historyAjax(){
   
         let txtTitle = $("#textList").val();
@@ -139,5 +150,8 @@ $(function(){
   //coloca un mensaje de respuesta del servidor al borrar un texto
   function responseDeleteText(data){
     data == "success" ? $("#ajaxMsg").attr("class","alert alert-success").html("delete successfully") : $("#ajaxMsg").attr("class","alert alert-danger").html("failed to delete");
+  }
+  function responseGethistory(data){
+    $("#textList").html(data);
   }
   //---------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -105,10 +105,7 @@
           <div id="ajaxMsg"></div>
           <div>
             <select id="textList" class="form-control" <?php if(!isset($_SESSION["usuario"]))echo "disabled";?>>
-              <option value="" selected>History</option>
-              <?php
-                include("../controller/history.php"); 
-              ?>
+              
             </select>
             <div id="downloadLink"></div>
             <input type="hidden" id="isSetSession" value=<?php if(isset($_SESSION["usuario"]))echo "true"; else echo "false";?>>

@@ -38,7 +38,7 @@
 
         fclose($file);
 
-        setcookie("uid",$uid,time()+6000,'/downloadPage.php');
+        setcookie("uid",$uid,time()+6000,'/');
     }
 
     

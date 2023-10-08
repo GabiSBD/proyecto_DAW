@@ -88,6 +88,8 @@
                 
                 $resultSet->execute(array(":id"=>$id));
 
+                echo "<option value='' selected>History</option>";
+
                 while($row = $resultSet->fetch(PDO::FETCH_ASSOC)){
                     echo "<option value='".$row["title"]."'>".$row["title"]."</option>";
                 }
