@@ -11,6 +11,7 @@ $(function(){
         document.getElementById("logo").addEventListener("click",toIndex,false);
         document.getElementById("upload").addEventListener("mouseover",iconSpin,false);
         document.getElementById("upload").addEventListener("mouseout",iconStop,false);
+        document.getElementById("submit").addEventListener("click",submit,false);
     });
         
     
@@ -18,6 +19,7 @@ $(function(){
 function toIndex(){ window.location = "index.php"; }
 function iconSpin(){ $("#iconSave").addClass("fa-bounce"); }
 function iconStop(){ $("#iconSave").removeClass("fa-bounce"); }
+function submit(){$("#formIndex").submit();}
 
 
 
