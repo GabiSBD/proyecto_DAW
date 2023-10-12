@@ -11,8 +11,6 @@ $(function(){
 
       document.getElementById("logo").addEventListener("click",toIndex,false);
 
-      document.getElementById("submit").addEventListener("click",submit,false);
-
     });
     
 
