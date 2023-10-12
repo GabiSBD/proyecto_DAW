@@ -18,7 +18,7 @@ $(function(){
 
   });
   function toIndex(){ window.location = "index.php"; }
-  function submit(){$("#formIndex").submit();}
+  
 //----------------------funciones AJAX------------------------------------------------
   function adminTable(){
     $.post("../controller/adminTable.php",drawTable);
