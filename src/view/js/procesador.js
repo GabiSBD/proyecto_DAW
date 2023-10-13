@@ -6,12 +6,6 @@ $(function(){
      //coloca el editor de texto
     let editor = $("#userText").Editor();
 
-     /* 
-     arreglo necesario para que el DOM se cargara corectamente usando ajax con jquery ya que no cargaba bien los eventos despues de usar una funcion ajax
-     la solucion hace que se recarguen todos los eventos de la pagina cada vez que hacemos click en alguno de los elemententos del body con la class clickElement.
-     fuente: https://stackoverflow.com/questions/13767919/jquery-event-wont-fire-after-ajax-call?rq=3
-     autor:Jason Fingar.
-     */
     $("body").on("mouseover",function(){
 
         document.getElementById("save").addEventListener("mouseup",getHistory,false);
