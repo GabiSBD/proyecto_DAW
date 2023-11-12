@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 -- Volcado de datos para la tabla `users`
 --
---Admin password: 1234
+-- Admin password: 1234
 INSERT INTO `users` (`id`, `name`, `passwrd`, `isAdmin`) VALUES
-(1, 'Admin', 0xc91d0f919f23f1d56157b94ba87db805, 1),
+(1, 'Admin', 0xc91d0f919f23f1d56157b94ba87db805, 1);
 
 COMMIT;
 
